@@ -1,0 +1,1898 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Food Assistant — Bangkok Group Dining 2026</title>
+<style>
+:root{--primary:#1a1a2e;--accent:#e94560;--accent2:#0f3460;--gold:#f5a623;--green:#27ae60;--blue:#2980b9;--purple:#8e44ad;--orange:#e67e22;--teal:#16a085;--bg:#0d0d1a;--card-bg:#1a1a2e;--card2:#16213e;--text:#e0e0e0;--muted:#888;--border:rgba(255,255,255,0.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.hero{background:linear-gradient(135deg,#0f3460 0%,#16213e 40%,#1a1a2e 70%,#e94560 100%);padding:60px 40px 50px;text-align:center;position:relative;overflow:hidden}
+.hero-badge{display:inline-block;background:var(--accent);color:#fff;padding:4px 14px;border-radius:20px;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.hero h1{font-size:3rem;font-weight:800;color:#fff;letter-spacing:-1px}
+.hero h1 span{color:var(--gold)}
+.hero-sub{font-size:1.1rem;color:rgba(255,255,255,0.7);margin-top:10px}
+.hero-meta{display:flex;justify-content:center;gap:32px;margin-top:28px;flex-wrap:wrap}
+.hero-meta-item{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:10px 20px;text-align:center}
+.hero-meta-item .label{font-size:10px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1px}
+.hero-meta-item .value{font-size:14px;font-weight:700;color:#fff;margin-top:2px}
+.stats-strip{display:flex;justify-content:center;background:var(--accent2);flex-wrap:wrap}
+.stat-item{flex:1;min-width:120px;padding:18px 24px;text-align:center;border-right:1px solid rgba(255,255,255,0.1)}
+.stat-item:last-child{border-right:none}
+.stat-num{font-size:2rem;font-weight:800;color:var(--gold)}
+.stat-label{font-size:11px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1px}
+.section{padding:60px 40px;max-width:1400px;margin:0 auto}
+.section-header{display:flex;align-items:center;gap:14px;margin-bottom:36px}
+.section-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.section-title{font-size:1.6rem;font-weight:700;color:#fff}
+.section-subtitle{font-size:13px;color:var(--muted);margin-top:2px}
+.divider{height:1px;background:var(--border);margin:0 40px}
+.objectives-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.obj-card{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:24px;position:relative;overflow:hidden;transition:transform .2s}
+.obj-card:hover{transform:translateY(-2px)}
+.obj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.obj-card.c1::before{background:#2980b9}.obj-card.c2::before{background:#27ae60}.obj-card.c3::before{background:#f5a623}.obj-card.c4::before{background:#e94560}.obj-card.c5::before{background:#8e44ad}.obj-card.c6::before{background:#16a085}
+.obj-num{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.obj-title{font-size:15px;font-weight:700;color:#fff;margin-bottom:8px}
+.obj-desc{font-size:13px;color:var(--muted);line-height:1.5}
+.workflow{display:flex;align-items:flex-start;gap:0;flex-wrap:wrap;background:var(--card-bg);border-radius:16px;padding:32px;border:1px solid var(--border)}
+.wf-step{flex:1;min-width:130px;text-align:center;padding:16px 8px;position:relative}
+.wf-step::after{content:'→';position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:20px;font-weight:bold}
+.wf-step:last-child::after{display:none}
+.wf-icon{width:56px;height:56px;border-radius:14px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:24px}
+.wf-title{font-size:13px;font-weight:700;color:#fff}
+.wf-sub{font-size:10px;color:var(--muted);margin-top:4px}
+.tools-grid{display:flex;gap:16px;flex-wrap:wrap}
+.tool-chip{display:flex;align-items:center;gap:10px;background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:12px 18px}
+.tool-logo{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff;flex-shrink:0}
+.tool-name{font-size:13px;font-weight:600;color:#fff}
+.tool-desc{font-size:11px;color:var(--muted)}
+.scoring-table{width:100%;border-collapse:collapse}
+.scoring-table th{background:var(--accent2);color:#fff;padding:12px 16px;text-align:left;font-size:13px;font-weight:600}
+.scoring-table td{padding:12px 16px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:middle}
+.scoring-table tr:last-child td{border-bottom:none}
+.scoring-table tr:hover td{background:rgba(255,255,255,0.03)}
+.score-weight{display:inline-block;background:var(--accent);color:#fff;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:700}
+.score-bar-wrap{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+.score-bar{height:6px;border-radius:3px;transition:width .3s}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.tab-btn{padding:10px 18px;border-radius:8px;border:1px solid var(--border);background:var(--card-bg);color:var(--muted);cursor:pointer;font-size:13px;font-weight:600;transition:all .2s;white-space:nowrap}
+.tab-btn.active,.tab-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.rec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+.rec-card{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:transform .2s}
+.rec-card:hover{transform:translateY(-4px)}
+.rec-card-header{padding:20px 20px 16px;position:relative}
+.rec-rank{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff}
+.rank-1{background:var(--gold)}.rank-2{background:#b0b0b0}.rank-3{background:#cd7f32}
+.rec-area{display:inline-block;font-size:11px;padding:3px 10px;border-radius:20px;color:#fff;margin-bottom:8px;font-weight:600}
+.rec-name{font-size:16px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:6px}
+.rec-cuisine{font-size:12px;color:var(--muted);margin-bottom:12px}
+.rec-meta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.rec-tag{font-size:11px;padding:3px 10px;border-radius:6px;background:rgba(255,255,255,0.08);color:var(--text)}
+.rec-reason{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.4;padding:10px;background:rgba(255,255,255,0.04);border-radius:8px;margin-bottom:12px}
+.rec-scores{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:14px 20px;background:rgba(0,0,0,0.2)}
+.rec-score-item{text-align:center}
+.rec-score-val{font-size:15px;font-weight:700}
+.rec-score-lbl{font-size:9px;color:var(--muted);text-transform:uppercase}
+.rec-total-bar{display:flex;align-items:center;gap:8px;padding:12px 20px;background:rgba(0,0,0,0.3)}
+.total-label{font-size:11px;color:var(--muted);min-width:80px}
+.total-bar{flex:1;height:8px;background:rgba(255,255,255,0.1);border-radius:4px;overflow:hidden}
+.total-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent2),var(--accent))}
+.total-val{font-size:15px;font-weight:800;color:var(--gold);min-width:40px;text-align:right}
+.rec-actions{padding:12px 20px;display:flex;gap:8px}
+.btn-maps{flex:1;padding:8px;background:var(--accent);color:#fff;border-radius:8px;text-decoration:none;text-align:center;font-size:12px;font-weight:600}
+.btn-maps:hover{opacity:.85}
+.area-filter{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.area-btn{padding:7px 16px;border-radius:20px;border:1px solid var(--border);background:var(--card-bg);color:var(--muted);cursor:pointer;font-size:12px;font-weight:600;transition:all .2s}
+.area-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.rank-table{width:100%;border-collapse:collapse}
+.rank-table thead th{background:var(--card2);color:var(--muted);padding:10px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--border)}
+.rank-table tbody td{padding:12px 12px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:middle}
+.rank-table tbody tr:hover td{background:rgba(255,255,255,0.03)}
+.rank-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
+.area-badge{display:inline-block;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700;color:#fff}
+.mini-bars{display:flex;flex-direction:column;gap:3px;min-width:140px}
+.mini-bar-row{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--muted)}
+.mini-bar{flex:1;height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden}
+.mini-fill{height:100%;border-radius:2px}
+.total-score-big{font-size:22px;font-weight:800;color:var(--gold)}
+.map-link{color:var(--accent);text-decoration:none;font-size:11px}
+.map-link:hover{text-decoration:underline}
+.compare-table{width:100%;border-collapse:collapse}
+.compare-table th{background:var(--accent2);color:#fff;padding:12px 14px;font-size:12px;text-align:center;min-width:160px}
+.compare-table th:first-child{text-align:left;min-width:120px}
+.compare-table td{padding:11px 14px;border-bottom:1px solid var(--border);font-size:12px;text-align:center;vertical-align:middle}
+.compare-table td:first-child{text-align:left;font-weight:600;color:var(--muted)}
+.compare-table tr:hover td{background:rgba(255,255,255,0.03)}
+.check-yes{color:var(--green);font-weight:700}
+.check-no{color:var(--muted)}
+.pro{color:var(--green);font-size:11px}
+.con{color:var(--accent);font-size:11px}
+footer{text-align:center;padding:40px;background:var(--primary);border-top:1px solid var(--border);color:var(--muted);font-size:12px}
+footer a{color:var(--accent);text-decoration:none}
+@media(max-width:768px){.hero h1{font-size:2rem}.section{padding:40px 20px}.workflow{flex-direction:column}.wf-step::after{display:none}}
+</style></head><body>
+
+<header class="hero">
+  <div class="hero-badge">🤖 AI Food Assistant Report</div>
+  <h1>Bangkok <span>Group</span> Dining 2026</h1>
+  <p class="hero-sub">AI-Powered Restaurant Research &amp; Scoring for Teams of 8–12 People</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><div class="label">📍 Locations</div><div class="value">สยาม · อารีย์ · ทองหล่อ · อโศก · พร้อมพงษ์</div></div>
+    <div class="hero-meta-item"><div class="label">📅 Date</div><div class="value">30 พฤษภาคม 2026</div></div>
+    <div class="hero-meta-item"><div class="label">👤 Author</div><div class="value">HOF APO</div></div>
+  </div>
+</header>
+<div class="stats-strip">
+  <div class="stat-item"><div class="stat-num">149</div><div class="stat-label">ร้านอาหาร</div></div>
+  <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">ย่าน</div></div>
+  <div class="stat-item"><div class="stat-num">4.66</div><div class="stat-label">คะแนนเฉลี่ย</div></div>
+  <div class="stat-item"><div class="stat-num">70.6</div><div class="stat-label">AI Score เฉลี่ย</div></div>
+  <div class="stat-item"><div class="stat-num">144,032</div><div class="stat-label">รีวิวรวม</div></div>
+  <div class="stat-item"><div class="stat-num">100</div><div class="stat-label">คะแนนเต็ม</div></div>
+</div>
+<div class="divider"></div>
+<div class="section">
+  <div class="section-header"><div class="section-icon" style="background:#1a3a6e">🎯</div><div><div class="section-title">Objectives</div><div class="section-subtitle">เป้าหมายการวิจัย</div></div></div>
+  <div class="objectives-grid">
+<div class="obj-card c1"><div class="obj-num" style="color:#2980b9">Objective 1</div><div class="obj-title">Data Collection</div><div class="obj-desc">รวบรวมข้อมูลร้านอาหารจริงจาก Google Maps และ TripAdvisor พร้อมแหล่งข้อมูลและรีวิวที่ตรวจสอบได้</div></div>
+<div class="obj-card c2"><div class="obj-num" style="color:#27ae60">Objective 2</div><div class="obj-title">Data Analysis</div><div class="obj-desc">วิเคราะห์และให้คะแนนร้านอาหารตามความเหมาะสมสำหรับทีม 8–12 คน ด้วย AI Scoring Model 100 คะแนน</div></div>
+<div class="obj-card c3"><div class="obj-num" style="color:#f5a623">Objective 3</div><div class="obj-title">Restaurant Ranking</div><div class="obj-desc">จัดอันดับร้านอาหารและคัดเลือก Top 10 ร้านที่ดีที่สุดในแต่ละพื้นที่ตามเกณฑ์ที่กำหนด</div></div>
+<div class="obj-card c4"><div class="obj-num" style="color:#e94560">Objective 4</div><div class="obj-title">Recommendation</div><div class="obj-desc">แนะนำร้านอาหาร Top 1–3 ร้าน พร้อมเหตุผล ใน 5 หมวด ได้แก่ คะแนนรวม ความคุ้มค่า Rating ความเหมาะกลุ่ม และความนิยม</div></div>
+<div class="obj-card c5"><div class="obj-num" style="color:#8e44ad">Objective 5</div><div class="obj-title">HTML Report</div><div class="obj-desc">นำเสนอผลลัพธ์ผ่านหน้าเว็บ HTML ที่ประกอบด้วยตารางอันดับ คะแนน เหตุผล และลิงก์อ้างอิง</div></div>
+<div class="obj-card c6"><div class="obj-num" style="color:#16a085">Objective 6</div><div class="obj-title">Restaurant Comparison</div><div class="obj-desc">เปรียบเทียบจุดเด่น ข้อควรระวัง และข้อมูลสำคัญของร้านเด่น Top 5 เพื่อช่วยตัดสินใจ</div></div>
+</div></div>
+<div class="divider"></div>
+<div class="section">
+  <div class="section-header"><div class="section-icon" style="background:#2d1b4e">⚙️</div><div><div class="section-title">Workflow Overview</div><div class="section-subtitle">ขั้นตอนการทำงานจริงทั้งหมด: Scraping → Filtering → Excel → AI Scoring → HTML</div></div></div>
+  <div class="workflow">
+    <div class="wf-step"><div class="wf-icon" style="background:#1a3a6e">🎯</div><div class="wf-title">1. Define Scope</div><div class="wf-sub">5 areas · 8–12 pax · exclude café/dessert</div></div>
+    <div class="wf-step"><div class="wf-icon" style="background:#1e4d3e">🕷️</div><div class="wf-title">2. Apify Scraping</div><div class="wf-sub">Google Maps API · TripAdvisor · 149 rows</div></div>
+    <div class="wf-step"><div class="wf-icon" style="background:#4a2c00">🗃️</div><div class="wf-title">3. Data Filtering</div><div class="wf-sub">Remove closed · café · insufficient data</div></div>
+    <div class="wf-step"><div class="wf-icon" style="background:#3d1a5e">📊</div><div class="wf-title">4. Excel/Sheets</div><div class="wf-sub">openpyxl · 7 sheets · 47 columns</div></div>
+    <div class="wf-step"><div class="wf-icon" style="background:#5e1a1a">🤖</div><div class="wf-title">5. AI Scoring</div><div class="wf-sub">6 criteria · 100pt model · Python</div></div>
+    <div class="wf-step"><div class="wf-icon" style="background:#1a4a4a">🏆</div><div class="wf-title">6. Ranking</div><div class="wf-sub">Top 10 per area · 5 categories</div></div>
+    <div class="wf-step"><div class="wf-icon" style="background:#2d4a1a">🌐</div><div class="wf-title">7. HTML Report</div><div class="wf-sub">Interactive · Filter · Compare</div></div>
+  </div>
+</div>
+<div class="divider"></div>
+<div class="section">
+  <div class="section-header"><div class="section-icon" style="background:#1a3a1a">🛠️</div><div><div class="section-title">Tools Used</div><div class="section-subtitle">เครื่องมือที่ใช้งานจริงทั้งหมด</div></div></div>
+  <div class="tools-grid">
+<div class="tool-chip"><div class="tool-logo" style="background:#ee5522">A</div><div><div class="tool-name">Apify</div><div class="tool-desc">Web Scraping Platform — ดึงข้อมูล Google Maps & TripAdvisor</div></div></div>
+<div class="tool-chip"><div class="tool-logo" style="background:#34a853">G</div><div><div class="tool-name">Google Maps Scraper</div><div class="tool-desc">compass/crawler-google-places · 432K users — 93.4% success rate</div></div></div>
+<div class="tool-chip"><div class="tool-logo" style="background:#00af87">T</div><div><div class="tool-name">TripAdvisor Scraper</div><div class="tool-desc">delicious_zebu/tripadvisor — 4.99★ rating · Secondary source</div></div></div>
+<div class="tool-chip"><div class="tool-logo" style="background:#0f9d58">X</div><div><div class="tool-name">openpyxl</div><div class="tool-desc">Python Excel Library — สร้างไฟล์ .xlsx 7 sheets · 47 columns</div></div></div>
+<div class="tool-chip"><div class="tool-logo" style="background:#6f42c1">Py</div><div><div class="tool-name">Python 3</div><div class="tool-desc">Data Processing & Scoring — AI Scoring model · JSON · CSV processing</div></div></div>
+<div class="tool-chip"><div class="tool-logo" style="background:#e94560">AI</div><div><div class="tool-name">Claude AI</div><div class="tool-desc">Anthropic Claude Sonnet — AI analysis · automation · HTML generation</div></div></div>
+<div class="tool-chip"><div class="tool-logo" style="background:#1a1a2e">H</div><div><div class="tool-name">HTML/CSS/JS</div><div class="tool-desc">Frontend Technology — Interactive dashboard · filters · tabs</div></div></div>
+</div></div>
+<div class="divider"></div>
+<div class="section">
+  <div class="section-header"><div class="section-icon" style="background:#1a2a4a">📡</div><div><div class="section-title">Data Sources</div><div class="section-subtitle">แหล่งข้อมูลที่ใช้รวบรวมข้อมูลจริง</div></div></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px">
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:24px">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+        <div style="width:44px;height:44px;background:#34a853;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px">🗺️</div>
+        <div><div style="font-weight:700;color:#fff">Google Maps</div><div style="font-size:11px;color:var(--muted)">via Apify compass/crawler-google-places</div></div>
+      </div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px">ข้อมูลชื่อร้าน ที่อยู่ คะแนน รีวิว ราคา เวลาเปิด-ปิด และ attributes เพิ่มเติม เช่น Groups, Reservations, Parking จากทั้ง 5 ย่าน</div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <a href="https://apify.com/compass/crawler-google-places" target="_blank" style="color:var(--accent);font-size:12px;text-decoration:none">🔗 apify.com/compass/crawler-google-places</a>
+        <a href="https://www.google.com/maps" target="_blank" style="color:var(--accent);font-size:12px;text-decoration:none">🔗 google.com/maps</a>
+      </div>
+      <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+        <span style="background:rgba(52,168,83,0.15);color:#34a853;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600">149 ร้าน</span>
+        <span style="background:rgba(52,168,83,0.15);color:#34a853;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600">5 ย่าน</span>
+        <span style="background:rgba(52,168,83,0.15);color:#34a853;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600">93.4% success</span>
+      </div>
+    </div>
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:24px">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+        <div style="width:44px;height:44px;background:#00af87;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px">✈️</div>
+        <div><div style="font-weight:700;color:#fff">TripAdvisor</div><div style="font-size:11px;color:var(--muted)">via delicious_zebu/tripadvisor-hotel-details-scraper</div></div>
+      </div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px">Rating รีวิว ราคา และรายละเอียดร้านจาก TripAdvisor ใช้เป็น Secondary Source เพื่อยืนยันข้อมูลและเพิ่มความน่าเชื่อถือ</div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <a href="https://apify.com/delicious_zebu/tripadvisor-hotel-details-scraper" target="_blank" style="color:var(--accent);font-size:12px;text-decoration:none">🔗 apify.com/delicious_zebu/tripadvisor-hotel-details-scraper</a>
+        <a href="https://www.tripadvisor.com" target="_blank" style="color:var(--accent);font-size:12px;text-decoration:none">🔗 tripadvisor.com</a>
+      </div>
+      <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+        <span style="background:rgba(0,175,135,0.15);color:#00af87;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600">111 รายการ</span>
+        <span style="background:rgba(0,175,135,0.15);color:#00af87;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600">4.99★ scraper</span>
+        <span style="background:rgba(0,175,135,0.15);color:#00af87;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600">80.4% success</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="divider"></div>
+<div class="section">
+  <div class="section-header"><div class="section-icon" style="background:#2a1a4e">📊</div><div><div class="section-title">Dataset Overview</div><div class="section-subtitle">ภาพรวมข้อมูลที่รวบรวมได้</div></div></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-bottom:28px">
+<div style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:16px">
+      <div style="font-size:22px;font-weight:800;color:#e74c3c">29</div>
+      <div style="font-size:13px;font-weight:600;color:#fff">Siam</div>
+      <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px;margin-top:8px;overflow:hidden"><div style="height:100%;width:19%;background:#e74c3c;border-radius:2px"></div></div>
+      <div style="font-size:10px;color:var(--muted);margin-top:4px">19% of total</div>
+    </div>
+<div style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:16px">
+      <div style="font-size:22px;font-weight:800;color:#27ae60">30</div>
+      <div style="font-size:13px;font-weight:600;color:#fff">Ari</div>
+      <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px;margin-top:8px;overflow:hidden"><div style="height:100%;width:20%;background:#27ae60;border-radius:2px"></div></div>
+      <div style="font-size:10px;color:var(--muted);margin-top:4px">20% of total</div>
+    </div>
+<div style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:16px">
+      <div style="font-size:22px;font-weight:800;color:#8e44ad">30</div>
+      <div style="font-size:13px;font-weight:600;color:#fff">Thonglor</div>
+      <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px;margin-top:8px;overflow:hidden"><div style="height:100%;width:20%;background:#8e44ad;border-radius:2px"></div></div>
+      <div style="font-size:10px;color:var(--muted);margin-top:4px">20% of total</div>
+    </div>
+<div style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:16px">
+      <div style="font-size:22px;font-weight:800;color:#2980b9">30</div>
+      <div style="font-size:13px;font-weight:600;color:#fff">Asok</div>
+      <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px;margin-top:8px;overflow:hidden"><div style="height:100%;width:20%;background:#2980b9;border-radius:2px"></div></div>
+      <div style="font-size:10px;color:var(--muted);margin-top:4px">20% of total</div>
+    </div>
+<div style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:16px">
+      <div style="font-size:22px;font-weight:800;color:#e67e22">30</div>
+      <div style="font-size:13px;font-weight:600;color:#fff">Phrom Phong</div>
+      <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px;margin-top:8px;overflow:hidden"><div style="height:100%;width:20%;background:#e67e22;border-radius:2px"></div></div>
+      <div style="font-size:10px;color:var(--muted);margin-top:4px">20% of total</div>
+    </div>
+</div>
+<div style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:20px">
+  <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:14px">Fields ที่รวบรวม (47 columns ต่อร้าน)</div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:12px">
+<span style="background:rgba(255,255,255,0.07);padding:4px 10px;border-radius:6px;color:var(--text)">ชื่อร้าน</span>
+<span style="background:rgba(255,255,255,0.07);padding:4px 10px;border-radius:6px;color:var(--text)">พื้นที่</span>
+<span style="background:rgba(255,255,255,0.07);padding:4px 10px;border-radius:6px;color:var(--text)">ประเภทอาหาร</span>
+<span style="background:rgba(255,255,255,0.07);padding:4px 10px;border-radius:6px;color:var(--text)">คะแนน Google</span>
+<span style="background:rgba(255,255,255,0.07);padding:4px 10px;border-radius:6px;color:var(--text)">รีวิว Google</span>
+<span style="background:rgba(255,255,255,0.07);padding:4px 10px;border-radius:6px;color:var(--text)">TripAdvisor Rating</span>
+<span style="background:rgba(255,255,255,0.07);padding:4px 10px;border-radius:6px;color:var(--text)">ช่วงราคา/คน</span>
+<span style="background:rgba(255,255,255,0.07);padding:4px 10px;border-radius:6px;color:var(--text)">Price Level</span>
+<span style="background:rgba(255,255,255,0.07);padding:4px 10px;border-radius:6px;color:var(--text)">ที่ตั้ง</span>
+<span style="background:rgba(255,255,255,0.07);padding:4px 10px;border-radius:6px;color:var(--text)">BTS/MRT</span>
+<span style="background:rgba(255,255,255,0.07);padding:4px 10px;border-radius:6px;color:var(--text)">เวลาเปิด-ปิด</span>
+<span style="background:rgba(255,255,255,0.07);padding:4px 10px;border-radius:6px;color:var(--text)">รับกลุ่ม</span>
+<span style="background:rgba(255,255,255,0.07);padding:4px 10px;border-radius:6px;color:var(--text)">รับจอง</span>
+<span style="background:rgba(255,255,255,0.07);padding:4px 10px;border-radius:6px;color:var(--text)">Private Room</span>
+<span style="background:rgba(255,255,255,0.07);padding:4px 10px;border-radius:6px;color:var(--text)">ลิงก์ Maps</span>
+<span style="background:rgba(255,255,255,0.07);padding:4px 10px;border-radius:6px;color:var(--text)">เบอร์โทร</span>
+<span style="background:rgba(255,255,255,0.07);padding:4px 10px;border-radius:6px;color:var(--text)">เว็บไซต์</span>
+<span style="background:rgba(255,255,255,0.07);padding:4px 10px;border-radius:6px;color:var(--text)">Parking</span>
+<span style="background:rgba(255,255,255,0.07);padding:4px 10px;border-radius:6px;color:var(--text)">Score A–F</span>
+</div></div></div>
+<div class="divider"></div>
+<div class="section">
+  <div class="section-header"><div class="section-icon" style="background:#3d2a00">⚖️</div><div><div class="section-title">Scoring Criteria</div><div class="section-subtitle">AI Scoring Model — 100 คะแนนเต็ม</div></div></div>
+  <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:14px;overflow:hidden">
+  <table class="scoring-table"><thead><tr><th>หมวด</th><th>รายละเอียดการคำนวณ</th><th>น้ำหนัก</th><th>สัดส่วน</th></tr></thead><tbody>
+<tr><td><span style="font-weight:700;color:#4472C4">🌟 [A] Rating & Review Quality</span></td><td style="color:var(--muted);font-size:12px">Rating ≥4.5=15pt · ≥4.0=12pt + Log(reviews)/Log(15000)×10 สูงสุด 10pt</td><td><span class="score-weight" style="background:#4472C4">25 pt</span></td><td><div class="score-bar-wrap"><div class="score-bar" style="width:100%;background:#4472C4"></div><span>25</span></div></td></tr>
+<tr><td><span style="font-weight:700;color:#70AD47">👥 [B] Group Suitability</span></td><td style="color:var(--muted);font-size:12px">รับกลุ่ม 8pt · มีระบบจอง 6pt · Private Room 6pt</td><td><span class="score-weight" style="background:#70AD47">20 pt</span></td><td><div class="score-bar-wrap"><div class="score-bar" style="width:80%;background:#70AD47"></div><span>20</span></div></td></tr>
+<tr><td><span style="font-weight:700;color:#ED7D31">💰 [C] Price Suitability</span></td><td style="color:var(--muted);font-size:12px">฿200–600/คน=15pt · ฿100–200 หรือ ฿600–1000=12pt · ฿1000–1500=8pt · อื่นๆ=4pt</td><td><span class="score-weight" style="background:#ED7D31">15 pt</span></td><td><div class="score-bar-wrap"><div class="score-bar" style="width:60%;background:#ED7D31"></div><span>15</span></div></td></tr>
+<tr><td><span style="font-weight:700;color:#FFC000">🚇 [D] Travel Convenience</span></td><td style="color:var(--muted);font-size:12px">มี BTS/MRT=10pt · มีที่จอดรถ/Valet=5pt</td><td><span class="score-weight" style="background:#FFC000">15 pt</span></td><td><div class="score-bar-wrap"><div class="score-bar" style="width:60%;background:#FFC000"></div><span>15</span></div></td></tr>
+<tr><td><span style="font-weight:700;color:#A9D18E">📋 [E] Data Completeness</span></td><td style="color:var(--muted);font-size:12px">จำนวน fields ที่มีข้อมูล ÷ 21 × 15</td><td><span class="score-weight" style="background:#A9D18E">15 pt</span></td><td><div class="score-bar-wrap"><div class="score-bar" style="width:60%;background:#A9D18E"></div><span>15</span></div></td></tr>
+<tr><td><span style="font-weight:700;color:#cd853f">✨ [F] Uniqueness / Experience</span></td><td style="color:var(--muted);font-size:12px">Private Room +4 · รีวิว >2000=+3 · รีวิว >500=+2 · Fine Dining $$$$=+2</td><td><span class="score-weight" style="background:#cd853f">10 pt</span></td><td><div class="score-bar-wrap"><div class="score-bar" style="width:40%;background:#cd853f"></div><span>10</span></div></td></tr>
+<tr style="background:rgba(255,255,255,0.05)"><td colspan="2" style="font-weight:800;color:#fff">รวมทั้งหมด</td><td><span class="score-weight" style="background:var(--gold);font-size:15px">100 pt</span></td><td></td></tr></tbody></table></div></div>
+<div class="divider"></div>
+<div class="section">
+  <div class="section-header"><div class="section-icon" style="background:#3d0000">🏆</div><div><div class="section-title">Top 3 Recommendations</div><div class="section-subtitle">ร้านแนะนำ 3 อันดับ แบ่งตาม 5 หมวด — กดเลือกหมวดที่ต้องการ</div></div></div>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab(this,'overall')">🏆 คะแนนรวมสูงสุด</button>
+    <button class="tab-btn" onclick="showTab(this,'value')">💰 ความคุ้มค่าสูงสุด</button>
+    <button class="tab-btn" onclick="showTab(this,'rating')">⭐ คะแนนรีวิวสูงสุด</button>
+    <button class="tab-btn" onclick="showTab(this,'group')">👥 เหมาะทีมมากสุด</button>
+    <button class="tab-btn" onclick="showTab(this,'popular')">🔥 นิยมสูงสุด</button>
+  </div>
+<div class="tab-content active" id="tab-overall"><div class="rec-grid">
+<div class="rec-card">
+  <div class="rec-card-header">
+    <div class="rec-rank rank-1">🥇</div>
+    <div class="rec-area" style="background:#27ae60">Ari</div>
+    <div class="rec-name">Lay Lao</div>
+    <div class="rec-cuisine">Thai restaurant</div>
+    <div class="rec-meta">
+      <span class="rec-tag">⭐ 4.5</span>
+      <span class="rec-tag">💬 2,450</span>
+      <span class="rec-tag">💰 ฿400–600</span>
+      <span class="rec-tag" style="color:#27ae60">🔒 Private</span>
+    </div>
+    <div class="rec-reason">💡 คะแนนรวมสูงสุดจากทุกเกณฑ์ ทั้งคุณภาพรีวิว ความเหมาะสมสำหรับกลุ่ม และความสะดวก</div>
+  </div>
+  <div class="rec-scores">
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#4472C4">23.1</div><div class="rec-score-lbl">Rating</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#70AD47">20</div><div class="rec-score-lbl">Group</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#ED7D31">15</div><div class="rec-score-lbl">Price</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#FFC000">15</div><div class="rec-score-lbl">Travel</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#A9D18E">5.7</div><div class="rec-score-lbl">Data</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#cd853f">8</div><div class="rec-score-lbl">Unique</div></div>
+  </div>
+  <div class="rec-total-bar">
+    <div class="total-label">AI Score</div>
+    <div class="total-bar"><div class="total-fill" style="width:86.8%"></div></div>
+    <div class="total-val">86.8</div>
+  </div>
+  <div class="rec-actions">
+    <a class="btn-maps" href="https://www.google.com/maps/place/?q=place_id:ChIJ44AEpx2c4jARZKaM12f1HQI" target="_blank">📍 Google Maps</a>
+    <a class="btn-maps" style="background:#0f3460" href="tel:+66 62 453 5588">+66 62 453 5588</a>
+  </div>
+</div><div class="rec-card">
+  <div class="rec-card-header">
+    <div class="rec-rank rank-2">🥈</div>
+    <div class="rec-area" style="background:#27ae60">Ari</div>
+    <div class="rec-name">Kopihub Prime l Ari</div>
+    <div class="rec-cuisine">Dim sum restaurant</div>
+    <div class="rec-meta">
+      <span class="rec-tag">⭐ 4.8</span>
+      <span class="rec-tag">💬 3,429</span>
+      <span class="rec-tag">💰 ฿200–400</span>
+      <span class="rec-tag" style="color:#27ae60">🔒 Private</span>
+    </div>
+    <div class="rec-reason">💡 คะแนนรวมสูงสุดจากทุกเกณฑ์ ทั้งคุณภาพรีวิว ความเหมาะสมสำหรับกลุ่ม และความสะดวก</div>
+  </div>
+  <div class="rec-scores">
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#4472C4">23.5</div><div class="rec-score-lbl">Rating</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#70AD47">20</div><div class="rec-score-lbl">Group</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#ED7D31">15</div><div class="rec-score-lbl">Price</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#FFC000">15</div><div class="rec-score-lbl">Travel</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#A9D18E">5.7</div><div class="rec-score-lbl">Data</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#cd853f">7</div><div class="rec-score-lbl">Unique</div></div>
+  </div>
+  <div class="rec-total-bar">
+    <div class="total-label">AI Score</div>
+    <div class="total-bar"><div class="total-fill" style="width:86.2%"></div></div>
+    <div class="total-val">86.2</div>
+  </div>
+  <div class="rec-actions">
+    <a class="btn-maps" href="https://www.google.com/maps/place/?q=place_id:ChIJgdqs_tuf4jARl5VCETZn0do" target="_blank">📍 Google Maps</a>
+    <a class="btn-maps" style="background:#0f3460" href="tel:+66 80 992 4922">+66 80 992 4922</a>
+  </div>
+</div><div class="rec-card">
+  <div class="rec-card-header">
+    <div class="rec-rank rank-3">🥉</div>
+    <div class="rec-area" style="background:#e74c3c">Siam</div>
+    <div class="rec-name">Jim Thompson, A Thai Restaurant</div>
+    <div class="rec-cuisine">Thai restaurant, Asian restaurant, Cockt</div>
+    <div class="rec-meta">
+      <span class="rec-tag">⭐ 4.8</span>
+      <span class="rec-tag">💬 3,609</span>
+      <span class="rec-tag">💰 ฿1000+</span>
+      <span class="rec-tag" style="color:#27ae60">🔒 Private</span>
+    </div>
+    <div class="rec-reason">💡 คะแนนรวมสูงสุดจากทุกเกณฑ์ ทั้งคุณภาพรีวิว ความเหมาะสมสำหรับกลุ่ม และความสะดวก</div>
+  </div>
+  <div class="rec-scores">
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#4472C4">23.5</div><div class="rec-score-lbl">Rating</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#70AD47">20</div><div class="rec-score-lbl">Group</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#ED7D31">12</div><div class="rec-score-lbl">Price</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#FFC000">15</div><div class="rec-score-lbl">Travel</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#A9D18E">5.7</div><div class="rec-score-lbl">Data</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#cd853f">9</div><div class="rec-score-lbl">Unique</div></div>
+  </div>
+  <div class="rec-total-bar">
+    <div class="total-label">AI Score</div>
+    <div class="total-bar"><div class="total-fill" style="width:85.2%"></div></div>
+    <div class="total-val">85.2</div>
+  </div>
+  <div class="rec-actions">
+    <a class="btn-maps" href="https://www.google.com/maps/place/?q=place_id:ChIJKVqr3I6Z4jARPi6t_zvvL1A" target="_blank">📍 Google Maps</a>
+    <a class="btn-maps" style="background:#0f3460" href="tel:+66 61 421 8951">+66 61 421 8951</a>
+  </div>
+</div></div></div>
+<div class="tab-content " id="tab-value"><div class="rec-grid">
+<div class="rec-card">
+  <div class="rec-card-header">
+    <div class="rec-rank rank-1">🥇</div>
+    <div class="rec-area" style="background:#27ae60">Ari</div>
+    <div class="rec-name">ท่านพ่อซาลาเปา @ La Villa Ari</div>
+    <div class="rec-cuisine">Restaurant</div>
+    <div class="rec-meta">
+      <span class="rec-tag">⭐ 4.9</span>
+      <span class="rec-tag">💬 356</span>
+      <span class="rec-tag">💰 ฿1–200</span>
+      
+    </div>
+    <div class="rec-reason">💡 ราคาเหมาะสมที่สุดสำหรับกลุ่ม 8-12 คน คุ้มค่าเมื่อเทียบกับคุณภาพ</div>
+  </div>
+  <div class="rec-scores">
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#4472C4">21.1</div><div class="rec-score-lbl">Rating</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#70AD47">11</div><div class="rec-score-lbl">Group</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#ED7D31">12</div><div class="rec-score-lbl">Price</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#FFC000">15</div><div class="rec-score-lbl">Travel</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#A9D18E">5.7</div><div class="rec-score-lbl">Data</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#cd853f">1</div><div class="rec-score-lbl">Unique</div></div>
+  </div>
+  <div class="rec-total-bar">
+    <div class="total-label">AI Score</div>
+    <div class="total-bar"><div class="total-fill" style="width:65.8%"></div></div>
+    <div class="total-val">65.8</div>
+  </div>
+  <div class="rec-actions">
+    <a class="btn-maps" href="https://www.google.com/maps/place/?q=place_id:ChIJ6bL0kfad4jARqGHqAV9dmYY" target="_blank">📍 Google Maps</a>
+    <a class="btn-maps" style="background:#0f3460" href="tel:+66 64 128 8652">+66 64 128 8652</a>
+  </div>
+</div><div class="rec-card">
+  <div class="rec-card-header">
+    <div class="rec-rank rank-2">🥈</div>
+    <div class="rec-area" style="background:#8e44ad">Thonglor</div>
+    <div class="rec-name">17 Something • ทองหล่อ</div>
+    <div class="rec-cuisine">Restaurant</div>
+    <div class="rec-meta">
+      <span class="rec-tag">⭐ 4.6</span>
+      <span class="rec-tag">💬 257</span>
+      <span class="rec-tag">💰 ฿1–200</span>
+      
+    </div>
+    <div class="rec-reason">💡 ราคาเหมาะสมที่สุดสำหรับกลุ่ม 8-12 คน คุ้มค่าเมื่อเทียบกับคุณภาพ</div>
+  </div>
+  <div class="rec-scores">
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#4472C4">20.8</div><div class="rec-score-lbl">Rating</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#70AD47">14</div><div class="rec-score-lbl">Group</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#ED7D31">12</div><div class="rec-score-lbl">Price</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#FFC000">12</div><div class="rec-score-lbl">Travel</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#A9D18E">5.7</div><div class="rec-score-lbl">Data</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#cd853f">1</div><div class="rec-score-lbl">Unique</div></div>
+  </div>
+  <div class="rec-total-bar">
+    <div class="total-label">AI Score</div>
+    <div class="total-bar"><div class="total-fill" style="width:65.5%"></div></div>
+    <div class="total-val">65.5</div>
+  </div>
+  <div class="rec-actions">
+    <a class="btn-maps" href="https://www.google.com/maps/place/?q=place_id:ChIJ41LZs-Wf4jARLa6T22JFzys" target="_blank">📍 Google Maps</a>
+    <a class="btn-maps" style="background:#0f3460" href="tel:+66 81 102 0017">+66 81 102 0017</a>
+  </div>
+</div><div class="rec-card">
+  <div class="rec-card-header">
+    <div class="rec-rank rank-3">🥉</div>
+    <div class="rec-area" style="background:#27ae60">Ari</div>
+    <div class="rec-name">Beef Stew Ari</div>
+    <div class="rec-cuisine">Restaurant</div>
+    <div class="rec-meta">
+      <span class="rec-tag">⭐ 4.6</span>
+      <span class="rec-tag">💬 172</span>
+      <span class="rec-tag">💰 ฿1–200</span>
+      
+    </div>
+    <div class="rec-reason">💡 ราคาเหมาะสมที่สุดสำหรับกลุ่ม 8-12 คน คุ้มค่าเมื่อเทียบกับคุณภาพ</div>
+  </div>
+  <div class="rec-scores">
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#4472C4">20.4</div><div class="rec-score-lbl">Rating</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#70AD47">11</div><div class="rec-score-lbl">Group</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#ED7D31">12</div><div class="rec-score-lbl">Price</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#FFC000">15</div><div class="rec-score-lbl">Travel</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#A9D18E">5.0</div><div class="rec-score-lbl">Data</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#cd853f">1</div><div class="rec-score-lbl">Unique</div></div>
+  </div>
+  <div class="rec-total-bar">
+    <div class="total-label">AI Score</div>
+    <div class="total-bar"><div class="total-fill" style="width:64.4%"></div></div>
+    <div class="total-val">64.4</div>
+  </div>
+  <div class="rec-actions">
+    <a class="btn-maps" href="https://www.google.com/maps/place/?q=place_id:ChIJH0lqV0ed4jARJVpxbX8z1rc" target="_blank">📍 Google Maps</a>
+    <a class="btn-maps" style="background:#0f3460" href="tel:+66 97 226 3591">+66 97 226 3591</a>
+  </div>
+</div></div></div>
+<div class="tab-content " id="tab-rating"><div class="rec-grid">
+<div class="rec-card">
+  <div class="rec-card-header">
+    <div class="rec-rank rank-1">🥇</div>
+    <div class="rec-area" style="background:#e67e22">Phrom Phong</div>
+    <div class="rec-name">HONE Izakaya Sukhumvit 24</div>
+    <div class="rec-cuisine">Restaurant, Modern izakaya restaurant</div>
+    <div class="rec-meta">
+      <span class="rec-tag">⭐ 5.0</span>
+      <span class="rec-tag">💬 205</span>
+      <span class="rec-tag">💰 N/A</span>
+      <span class="rec-tag" style="color:#27ae60">🔒 Private</span>
+    </div>
+    <div class="rec-reason">💡 คะแนน Google Maps สูงสุด สะท้อนความพึงพอใจจากผู้ใช้งานจริง</div>
+  </div>
+  <div class="rec-scores">
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#4472C4">20.5</div><div class="rec-score-lbl">Rating</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#70AD47">20</div><div class="rec-score-lbl">Group</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#ED7D31">12</div><div class="rec-score-lbl">Price</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#FFC000">15</div><div class="rec-score-lbl">Travel</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#A9D18E">5.0</div><div class="rec-score-lbl">Data</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#cd853f">5</div><div class="rec-score-lbl">Unique</div></div>
+  </div>
+  <div class="rec-total-bar">
+    <div class="total-label">AI Score</div>
+    <div class="total-bar"><div class="total-fill" style="width:77.5%"></div></div>
+    <div class="total-val">77.5</div>
+  </div>
+  <div class="rec-actions">
+    <a class="btn-maps" href="https://www.google.com/maps/place/?q=place_id:ChIJqxfg68af4jARY16WyapdzjY" target="_blank">📍 Google Maps</a>
+    <a class="btn-maps" style="background:#0f3460" href="tel:+66 88 750 5438">+66 88 750 5438</a>
+  </div>
+</div><div class="rec-card">
+  <div class="rec-card-header">
+    <div class="rec-rank rank-2">🥈</div>
+    <div class="rec-area" style="background:#8e44ad">Thonglor</div>
+    <div class="rec-name">Serica Antipasti & Wine Bar</div>
+    <div class="rec-cuisine">Restaurant, Italian restaurant</div>
+    <div class="rec-meta">
+      <span class="rec-tag">⭐ 5.0</span>
+      <span class="rec-tag">💬 60</span>
+      <span class="rec-tag">💰 ฿600–800</span>
+      
+    </div>
+    <div class="rec-reason">💡 คะแนน Google Maps สูงสุด สะท้อนความพึงพอใจจากผู้ใช้งานจริง</div>
+  </div>
+  <div class="rec-scores">
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#4472C4">19.3</div><div class="rec-score-lbl">Rating</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#70AD47">14</div><div class="rec-score-lbl">Group</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#ED7D31">12</div><div class="rec-score-lbl">Price</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#FFC000">15</div><div class="rec-score-lbl">Travel</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#A9D18E">5.7</div><div class="rec-score-lbl">Data</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#cd853f">1</div><div class="rec-score-lbl">Unique</div></div>
+  </div>
+  <div class="rec-total-bar">
+    <div class="total-label">AI Score</div>
+    <div class="total-bar"><div class="total-fill" style="width:67.0%"></div></div>
+    <div class="total-val">67.0</div>
+  </div>
+  <div class="rec-actions">
+    <a class="btn-maps" href="https://www.google.com/maps/place/?q=place_id:ChIJ1TnoBwCf4jARlFPWMY0f_cY" target="_blank">📍 Google Maps</a>
+    <a class="btn-maps" style="background:#0f3460" href="tel:+66 97 172 7814">+66 97 172 7814</a>
+  </div>
+</div><div class="rec-card">
+  <div class="rec-card-header">
+    <div class="rec-rank rank-3">🥉</div>
+    <div class="rec-area" style="background:#8e44ad">Thonglor</div>
+    <div class="rec-name">PAY Thonglor</div>
+    <div class="rec-cuisine">Restaurant</div>
+    <div class="rec-meta">
+      <span class="rec-tag">⭐ 5.0</span>
+      <span class="rec-tag">💬 34</span>
+      <span class="rec-tag">💰 N/A</span>
+      
+    </div>
+    <div class="rec-reason">💡 คะแนน Google Maps สูงสุด สะท้อนความพึงพอใจจากผู้ใช้งานจริง</div>
+  </div>
+  <div class="rec-scores">
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#4472C4">18.7</div><div class="rec-score-lbl">Rating</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#70AD47">14</div><div class="rec-score-lbl">Group</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#ED7D31">12</div><div class="rec-score-lbl">Price</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#FFC000">12</div><div class="rec-score-lbl">Travel</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#A9D18E">4.3</div><div class="rec-score-lbl">Data</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#cd853f">0</div><div class="rec-score-lbl">Unique</div></div>
+  </div>
+  <div class="rec-total-bar">
+    <div class="total-label">AI Score</div>
+    <div class="total-bar"><div class="total-fill" style="width:61.0%"></div></div>
+    <div class="total-val">61.0</div>
+  </div>
+  <div class="rec-actions">
+    <a class="btn-maps" href="https://www.google.com/maps/place/?q=place_id:ChIJkVlkQDef4jARHRku6JLsnCU" target="_blank">📍 Google Maps</a>
+    <a class="btn-maps" style="background:#0f3460" href="tel:+66 92 037 6801">+66 92 037 6801</a>
+  </div>
+</div></div></div>
+<div class="tab-content " id="tab-group"><div class="rec-grid">
+<div class="rec-card">
+  <div class="rec-card-header">
+    <div class="rec-rank rank-1">🥇</div>
+    <div class="rec-area" style="background:#27ae60">Ari</div>
+    <div class="rec-name">Lay Lao</div>
+    <div class="rec-cuisine">Thai restaurant</div>
+    <div class="rec-meta">
+      <span class="rec-tag">⭐ 4.5</span>
+      <span class="rec-tag">💬 2,450</span>
+      <span class="rec-tag">💰 ฿400–600</span>
+      <span class="rec-tag" style="color:#27ae60">🔒 Private</span>
+    </div>
+    <div class="rec-reason">💡 รองรับกลุ่มใหญ่ได้ดี มีระบบจอง Private Room หรือโต๊ะกลุ่ม</div>
+  </div>
+  <div class="rec-scores">
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#4472C4">23.1</div><div class="rec-score-lbl">Rating</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#70AD47">20</div><div class="rec-score-lbl">Group</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#ED7D31">15</div><div class="rec-score-lbl">Price</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#FFC000">15</div><div class="rec-score-lbl">Travel</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#A9D18E">5.7</div><div class="rec-score-lbl">Data</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#cd853f">8</div><div class="rec-score-lbl">Unique</div></div>
+  </div>
+  <div class="rec-total-bar">
+    <div class="total-label">AI Score</div>
+    <div class="total-bar"><div class="total-fill" style="width:86.8%"></div></div>
+    <div class="total-val">86.8</div>
+  </div>
+  <div class="rec-actions">
+    <a class="btn-maps" href="https://www.google.com/maps/place/?q=place_id:ChIJ44AEpx2c4jARZKaM12f1HQI" target="_blank">📍 Google Maps</a>
+    <a class="btn-maps" style="background:#0f3460" href="tel:+66 62 453 5588">+66 62 453 5588</a>
+  </div>
+</div><div class="rec-card">
+  <div class="rec-card-header">
+    <div class="rec-rank rank-2">🥈</div>
+    <div class="rec-area" style="background:#27ae60">Ari</div>
+    <div class="rec-name">Kopihub Prime l Ari</div>
+    <div class="rec-cuisine">Dim sum restaurant</div>
+    <div class="rec-meta">
+      <span class="rec-tag">⭐ 4.8</span>
+      <span class="rec-tag">💬 3,429</span>
+      <span class="rec-tag">💰 ฿200–400</span>
+      <span class="rec-tag" style="color:#27ae60">🔒 Private</span>
+    </div>
+    <div class="rec-reason">💡 รองรับกลุ่มใหญ่ได้ดี มีระบบจอง Private Room หรือโต๊ะกลุ่ม</div>
+  </div>
+  <div class="rec-scores">
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#4472C4">23.5</div><div class="rec-score-lbl">Rating</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#70AD47">20</div><div class="rec-score-lbl">Group</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#ED7D31">15</div><div class="rec-score-lbl">Price</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#FFC000">15</div><div class="rec-score-lbl">Travel</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#A9D18E">5.7</div><div class="rec-score-lbl">Data</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#cd853f">7</div><div class="rec-score-lbl">Unique</div></div>
+  </div>
+  <div class="rec-total-bar">
+    <div class="total-label">AI Score</div>
+    <div class="total-bar"><div class="total-fill" style="width:86.2%"></div></div>
+    <div class="total-val">86.2</div>
+  </div>
+  <div class="rec-actions">
+    <a class="btn-maps" href="https://www.google.com/maps/place/?q=place_id:ChIJgdqs_tuf4jARl5VCETZn0do" target="_blank">📍 Google Maps</a>
+    <a class="btn-maps" style="background:#0f3460" href="tel:+66 80 992 4922">+66 80 992 4922</a>
+  </div>
+</div><div class="rec-card">
+  <div class="rec-card-header">
+    <div class="rec-rank rank-3">🥉</div>
+    <div class="rec-area" style="background:#e74c3c">Siam</div>
+    <div class="rec-name">Jim Thompson, A Thai Restaurant</div>
+    <div class="rec-cuisine">Thai restaurant, Asian restaurant, Cockt</div>
+    <div class="rec-meta">
+      <span class="rec-tag">⭐ 4.8</span>
+      <span class="rec-tag">💬 3,609</span>
+      <span class="rec-tag">💰 ฿1000+</span>
+      <span class="rec-tag" style="color:#27ae60">🔒 Private</span>
+    </div>
+    <div class="rec-reason">💡 รองรับกลุ่มใหญ่ได้ดี มีระบบจอง Private Room หรือโต๊ะกลุ่ม</div>
+  </div>
+  <div class="rec-scores">
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#4472C4">23.5</div><div class="rec-score-lbl">Rating</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#70AD47">20</div><div class="rec-score-lbl">Group</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#ED7D31">12</div><div class="rec-score-lbl">Price</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#FFC000">15</div><div class="rec-score-lbl">Travel</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#A9D18E">5.7</div><div class="rec-score-lbl">Data</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#cd853f">9</div><div class="rec-score-lbl">Unique</div></div>
+  </div>
+  <div class="rec-total-bar">
+    <div class="total-label">AI Score</div>
+    <div class="total-bar"><div class="total-fill" style="width:85.2%"></div></div>
+    <div class="total-val">85.2</div>
+  </div>
+  <div class="rec-actions">
+    <a class="btn-maps" href="https://www.google.com/maps/place/?q=place_id:ChIJKVqr3I6Z4jARPi6t_zvvL1A" target="_blank">📍 Google Maps</a>
+    <a class="btn-maps" style="background:#0f3460" href="tel:+66 61 421 8951">+66 61 421 8951</a>
+  </div>
+</div></div></div>
+<div class="tab-content " id="tab-popular"><div class="rec-grid">
+<div class="rec-card">
+  <div class="rec-card-header">
+    <div class="rec-rank rank-1">🥇</div>
+    <div class="rec-area" style="background:#e74c3c">Siam</div>
+    <div class="rec-name">The Island Bangkok – Top Rated Thai Restaurant & B</div>
+    <div class="rec-cuisine">Thai restaurant, Asian restaurant, Bar</div>
+    <div class="rec-meta">
+      <span class="rec-tag">⭐ 4.9</span>
+      <span class="rec-tag">💬 12,723</span>
+      <span class="rec-tag">💰 ฿200–400</span>
+      
+    </div>
+    <div class="rec-reason">💡 จำนวนรีวิวมากที่สุด แสดงถึงความนิยมและความเชื่อถือได้</div>
+  </div>
+  <div class="rec-scores">
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#4472C4">24.8</div><div class="rec-score-lbl">Rating</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#70AD47">14</div><div class="rec-score-lbl">Group</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#ED7D31">15</div><div class="rec-score-lbl">Price</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#FFC000">15</div><div class="rec-score-lbl">Travel</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#A9D18E">5.7</div><div class="rec-score-lbl">Data</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#cd853f">3</div><div class="rec-score-lbl">Unique</div></div>
+  </div>
+  <div class="rec-total-bar">
+    <div class="total-label">AI Score</div>
+    <div class="total-bar"><div class="total-fill" style="width:77.5%"></div></div>
+    <div class="total-val">77.5</div>
+  </div>
+  <div class="rec-actions">
+    <a class="btn-maps" href="https://www.google.com/maps/place/?q=place_id:ChIJBYCkBQCZ4jARMk27YRVj-vM" target="_blank">📍 Google Maps</a>
+    <a class="btn-maps" style="background:#0f3460" href="tel:+66 96 404 8625">+66 96 404 8625</a>
+  </div>
+</div><div class="rec-card">
+  <div class="rec-card-header">
+    <div class="rec-rank rank-2">🥈</div>
+    <div class="rec-area" style="background:#2980b9">Asok</div>
+    <div class="rec-name">Sunrise Tacos MEXICAN GRILL</div>
+    <div class="rec-cuisine">Mexican restaurant</div>
+    <div class="rec-meta">
+      <span class="rec-tag">⭐ 4.7</span>
+      <span class="rec-tag">💬 4,997</span>
+      <span class="rec-tag">💰 ฿200–400</span>
+      
+    </div>
+    <div class="rec-reason">💡 จำนวนรีวิวมากที่สุด แสดงถึงความนิยมและความเชื่อถือได้</div>
+  </div>
+  <div class="rec-scores">
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#4472C4">23.9</div><div class="rec-score-lbl">Rating</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#70AD47">14</div><div class="rec-score-lbl">Group</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#ED7D31">15</div><div class="rec-score-lbl">Price</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#FFC000">15</div><div class="rec-score-lbl">Travel</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#A9D18E">5.7</div><div class="rec-score-lbl">Data</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#cd853f">3</div><div class="rec-score-lbl">Unique</div></div>
+  </div>
+  <div class="rec-total-bar">
+    <div class="total-label">AI Score</div>
+    <div class="total-bar"><div class="total-fill" style="width:76.6%"></div></div>
+    <div class="total-val">76.6</div>
+  </div>
+  <div class="rec-actions">
+    <a class="btn-maps" href="https://www.google.com/maps/place/?q=place_id:ChIJxaq1oeOe4jAROvyHinpPC-Q" target="_blank">📍 Google Maps</a>
+    <a class="btn-maps" style="background:#0f3460" href="tel:+66 90 210 5940">+66 90 210 5940</a>
+  </div>
+</div><div class="rec-card">
+  <div class="rec-card-header">
+    <div class="rec-rank rank-3">🥉</div>
+    <div class="rec-area" style="background:#e74c3c">Siam</div>
+    <div class="rec-name">Pasta Ama Siam Center</div>
+    <div class="rec-cuisine">Restaurant</div>
+    <div class="rec-meta">
+      <span class="rec-tag">⭐ 4.9</span>
+      <span class="rec-tag">💬 4,763</span>
+      <span class="rec-tag">💰 ฿200–400</span>
+      
+    </div>
+    <div class="rec-reason">💡 จำนวนรีวิวมากที่สุด แสดงถึงความนิยมและความเชื่อถือได้</div>
+  </div>
+  <div class="rec-scores">
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#4472C4">23.8</div><div class="rec-score-lbl">Rating</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#70AD47">11</div><div class="rec-score-lbl">Group</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#ED7D31">15</div><div class="rec-score-lbl">Price</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#FFC000">15</div><div class="rec-score-lbl">Travel</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#A9D18E">5.7</div><div class="rec-score-lbl">Data</div></div>
+    <div class="rec-score-item"><div class="rec-score-val" style="color:#cd853f">3</div><div class="rec-score-lbl">Unique</div></div>
+  </div>
+  <div class="rec-total-bar">
+    <div class="total-label">AI Score</div>
+    <div class="total-bar"><div class="total-fill" style="width:73.5%"></div></div>
+    <div class="total-val">73.5</div>
+  </div>
+  <div class="rec-actions">
+    <a class="btn-maps" href="https://www.google.com/maps/place/?q=place_id:ChIJwSrCL8uf4jARQB4sChigQRE" target="_blank">📍 Google Maps</a>
+    <a class="btn-maps" style="background:#0f3460" href="tel:+66 81 046 5987">+66 81 046 5987</a>
+  </div>
+</div></div></div>
+</div>
+<div class="divider"></div>
+<div class="section">
+  <div class="section-header"><div class="section-icon" style="background:#1a3a2e">📋</div><div><div class="section-title">Top 10 Ranking</div><div class="section-subtitle">จัดอันดับร้านดีที่สุด — เลือกย่านที่ต้องการด้านล่าง</div></div></div>
+  <div class="area-filter">
+    <button class="area-btn active" onclick="filterArea(this,'all')">🌏 ทุกย่าน (Top 15)</button>
+<button class="area-btn" onclick="filterArea(this,'Siam')">🛍️ Siam</button>
+<button class="area-btn" onclick="filterArea(this,'Ari')">🌿 Ari</button>
+<button class="area-btn" onclick="filterArea(this,'Thonglor')">🌃 Thonglor</button>
+<button class="area-btn" onclick="filterArea(this,'Asok')">🏙️ Asok</button>
+<button class="area-btn" onclick="filterArea(this,'Phrom Phong')">🌟 Phrom Phong</button>
+</div><div style="overflow-x:auto"><table class="rank-table" id="rankTable"><thead><tr><th>#</th><th>ร้านอาหาร</th><th>ย่าน</th><th>ประเภท</th><th>ราคา</th><th>Rating</th><th>Score Breakdown</th><th>AI Score</th><th></th></tr></thead><tbody id="rankBody">
+<tr data-area="all" data-area2="Ari">
+  <td><div class="rank-num" style="background:#f5a623;color:#000">1</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Lay Lao</div><div style="font-size:11px;color:var(--muted)">65 Phahon Yothin 7, Samsen Nai, Phaya Thai, Bangkok 10400, T</div></td>
+  <td><span class="area-badge" style="background:#27ae60">Ari</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Thai restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.5</div><div style="font-size:10px;color:var(--muted)">2,450 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:92%;background:#4472C4"></div></div>23.1</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">86.8</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJ44AEpx2c4jARZKaM12f1HQI" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="all" data-area2="Ari">
+  <td><div class="rank-num" style="background:#b0b0b0;color:#000">2</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Kopihub Prime l Ari</div><div style="font-size:11px;color:var(--muted)">33 Soi Ari 2, Phaya Thai, Bangkok 10400, Thailand</div></td>
+  <td><span class="area-badge" style="background:#27ae60">Ari</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Dim sum restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.8</div><div style="font-size:10px;color:var(--muted)">3,429 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:94%;background:#4472C4"></div></div>23.5</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">86.2</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJgdqs_tuf4jARl5VCETZn0do" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="all" data-area2="Siam">
+  <td><div class="rank-num" style="background:#cd7f32;color:#fff">3</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Jim Thompson, A Thai Restaurant</div><div style="font-size:11px;color:var(--muted)">6/1,6, 2 Kasem San 2 Alley, Wang Mai, Pathum Wan, Bangkok 10</div></td>
+  <td><span class="area-badge" style="background:#e74c3c">Siam</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Thai restaurant, Asian restaurant, </td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.8</div><div style="font-size:10px;color:var(--muted)">3,609 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:94%;background:#4472C4"></div></div>23.5</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">85.2</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJKVqr3I6Z4jARPi6t_zvvL1A" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="all" data-area2="Siam">
+  <td><div class="rank-num" style="background:#333;color:#888">4</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Jasmine Siam Kitchen จัสมิน สยาม คิทเช่น</div><div style="font-size:11px;color:var(--muted)">497, 14-15 Phetchaburi Rd, Thung Phaya Thai, Ratchathewi, Ba</div></td>
+  <td><span class="area-badge" style="background:#e74c3c">Siam</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Thai restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.7</div><div style="font-size:10px;color:var(--muted)">1,150 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:89%;background:#4472C4"></div></div>22.3</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">84.0</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJ1RRK2NSf4jARfIAToxgsxrU" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="all" data-area2="Thonglor">
+  <td><div class="rank-num" style="background:#333;color:#888">5</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Lucca Thonglor – Mediterranean Restaurant, Rooftop</div><div style="font-size:11px;color:var(--muted)">Thonglor, 125/26 Thong Lo, Khlong Tan Nuea, Watthana, Bangko</div></td>
+  <td><span class="area-badge" style="background:#8e44ad">Thonglor</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Restaurant, Brunch restaurant, Medi</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.9</div><div style="font-size:10px;color:var(--muted)">817 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:88%;background:#4472C4"></div></div>22.0</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">83.7</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJbx8TnXKf4jARvOgGrfi8gCQ" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="all" data-area2="Asok">
+  <td><div class="rank-num" style="background:#333;color:#888">6</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Ping's Shark Fin Restaurant Asoke (The Original)</div><div style="font-size:11px;color:var(--muted)">137/3 Sukhumvit 21 Rd, North Klongtoey Watthana, Bangkok 101</div></td>
+  <td><span class="area-badge" style="background:#2980b9">Asok</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Chinese restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.6</div><div style="font-size:10px;color:var(--muted)">1,584 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:91%;background:#4472C4"></div></div>22.7</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">83.4</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJnfQQnAGf4jARkEY6N_nZR74" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="all" data-area2="Ari">
+  <td><div class="rank-num" style="background:#333;color:#888">7</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Seiniku-Ten @ Ari</div><div style="font-size:11px;color:var(--muted)">40 Chua Chit Alley, Phaya Thai, Bangkok 10400, Thailand</div></td>
+  <td><span class="area-badge" style="background:#27ae60">Ari</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Yakiniku restaurant, Buffet restaur</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.5</div><div style="font-size:10px;color:var(--muted)">1,511 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:90%;background:#4472C4"></div></div>22.6</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">83.3</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJ95SfUxyc4jARx8SwhPXpSBQ" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="all" data-area2="Asok">
+  <td><div class="rank-num" style="background:#333;color:#888">8</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Rossano's Italian Cuisine</div><div style="font-size:11px;color:var(--muted)">167 Sukhumvit Soi 21, Asok Montri Rd, Khlong Toei Nuea, Watt</div></td>
+  <td><span class="area-badge" style="background:#2980b9">Asok</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Italian restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.5</div><div style="font-size:10px;color:var(--muted)">1,137 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:89%;background:#4472C4"></div></div>22.3</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">83.0</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJge5RZOOe4jARzWYZ3jGvKbA" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="all" data-area2="Phrom Phong">
+  <td><div class="rank-num" style="background:#333;color:#888">9</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">LA PLANTE</div><div style="font-size:11px;color:var(--muted)">AVORA31, 28 Sukhumvit 31, Khlong Tan Nuea, Watthana, Bangkok</div></td>
+  <td><span class="area-badge" style="background:#e67e22">Phrom Phong</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">French restaurant, Bistro, Breakfas</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.6</div><div style="font-size:10px;color:var(--muted)">258 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:83%;background:#4472C4"></div></div>20.8</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">82.5</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJkQb2tXOf4jARhJdrACdo7c8" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="all" data-area2="Asok">
+  <td><div class="rank-num" style="background:#333;color:#888">10</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">The Deck Bangkok (thedeckbkk)</div><div style="font-size:11px;color:var(--muted)">15 Sukhumvit 20 Alley, Khlong Toei, Bangkok 10110, Thailand</div></td>
+  <td><span class="area-badge" style="background:#2980b9">Asok</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Restaurant, Bar, Brunch restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.7</div><div style="font-size:10px;color:var(--muted)">1,661 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:91%;background:#4472C4"></div></div>22.7</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">82.4</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJwckPWrif4jARrU3ysHbv5v8" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="all" data-area2="Thonglor">
+  <td><div class="rank-num" style="background:#333;color:#888">11</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">SHAKARICH</div><div style="font-size:11px;color:var(--muted)">6-7, No.416, Thong Lo, Klongton Nua, Watthana, Bangkok 10110</div></td>
+  <td><span class="area-badge" style="background:#8e44ad">Thonglor</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Japanese restaurant, Crab house, Ec</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.7</div><div style="font-size:10px;color:var(--muted)">532 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:86%;background:#4472C4"></div></div>21.5</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">82.2</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJWY30I1Oe4jARlP_8fcdYYhw" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="all" data-area2="Ari">
+  <td><div class="rank-num" style="background:#333;color:#888">12</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Baan Pueng Chom</div><div style="font-size:11px;color:var(--muted)">38 Phahon Yothin 7, แขวง พญาไท Phaya Thai, Bangkok 10400, Th</div></td>
+  <td><span class="area-badge" style="background:#27ae60">Ari</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Thai restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.2</div><div style="font-size:10px;color:var(--muted)">1,620 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:79%;background:#4472C4"></div></div>19.7</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">81.4</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJDeDuUByc4jARIqwSs_XcM2M" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="all" data-area2="Ari">
+  <td><div class="rank-num" style="background:#333;color:#888">13</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">IzakayaReiwa</div><div style="font-size:11px;color:var(--muted)">117/2 Phahon Yothin 7, Phaya Thai, Bangkok 10400, Thailand</div></td>
+  <td><span class="area-badge" style="background:#27ae60">Ari</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Izakaya restaurant, Japanese restau</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.6</div><div style="font-size:10px;color:var(--muted)">588 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:86%;background:#4472C4"></div></div>21.6</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">81.3</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJ7XCbhCGd4jARFpyNOibOsLA" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="all" data-area2="Thonglor">
+  <td><div class="rank-num" style="background:#333;color:#888">14</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Thong Lo Yokocho</div><div style="font-size:11px;color:var(--muted)">138, 1 ถนน สุขุมวิท Khwaeng Khlong Tan Nuea, Watthana, Bangk</div></td>
+  <td><span class="area-badge" style="background:#8e44ad">Thonglor</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Izakaya restaurant, Japanese curry </td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.6</div><div style="font-size:10px;color:var(--muted)">709 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:87%;background:#4472C4"></div></div>21.8</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">80.5</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJCxd7WFKe4jARBpavYzUGhlo" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="all" data-area2="Siam">
+  <td><div class="rank-num" style="background:#333;color:#888">15</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Phrigkiao Bangkok - Certified by CICOT(The Central</div><div style="font-size:11px;color:var(--muted)">410/5-6 Siam Square Soi 6, Khwaeng Pathum Wan, Pattumwan Ban</div></td>
+  <td><span class="area-badge" style="background:#e74c3c">Siam</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Halal restaurant, Restaurant, Thai </td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.7</div><div style="font-size:10px;color:var(--muted)">622 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:87%;background:#4472C4"></div></div>21.7</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">80.4</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJwXr_CRaf4jARKG3uu08Xw4g" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Siam" style="display:none">
+  <td><div class="rank-num" style="background:#f5a623;color:#000">1</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Jim Thompson, A Thai Restaurant</div><div style="font-size:11px;color:var(--muted)">6/1,6, 2 Kasem San 2 Alley, Wang Mai, Pathum Wan, Bangkok 10</div></td>
+  <td><span class="area-badge" style="background:#e74c3c">Siam</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Thai restaurant, Asian restaurant, </td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.8</div><div style="font-size:10px;color:var(--muted)">3,609 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:94%;background:#4472C4"></div></div>23.5</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">85.2</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJKVqr3I6Z4jARPi6t_zvvL1A" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Siam" style="display:none">
+  <td><div class="rank-num" style="background:#b0b0b0;color:#000">2</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Jasmine Siam Kitchen จัสมิน สยาม คิทเช่น</div><div style="font-size:11px;color:var(--muted)">497, 14-15 Phetchaburi Rd, Thung Phaya Thai, Ratchathewi, Ba</div></td>
+  <td><span class="area-badge" style="background:#e74c3c">Siam</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Thai restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.7</div><div style="font-size:10px;color:var(--muted)">1,150 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:89%;background:#4472C4"></div></div>22.3</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">84.0</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJ1RRK2NSf4jARfIAToxgsxrU" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Siam" style="display:none">
+  <td><div class="rank-num" style="background:#cd7f32;color:#fff">3</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Phrigkiao Bangkok - Certified by CICOT(The Central</div><div style="font-size:11px;color:var(--muted)">410/5-6 Siam Square Soi 6, Khwaeng Pathum Wan, Pattumwan Ban</div></td>
+  <td><span class="area-badge" style="background:#e74c3c">Siam</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Halal restaurant, Restaurant, Thai </td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.7</div><div style="font-size:10px;color:var(--muted)">622 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:87%;background:#4472C4"></div></div>21.7</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">80.4</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJwXr_CRaf4jARKG3uu08Xw4g" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Siam" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">4</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">The Island Bangkok – Top Rated Thai Restaurant & B</div><div style="font-size:11px;color:var(--muted)">49 Samsen 4 Alley, Ban Phan Thom, Phra Nakhon, Bangkok 10200</div></td>
+  <td><span class="area-badge" style="background:#e74c3c">Siam</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Thai restaurant, Asian restaurant, </td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.9</div><div style="font-size:10px;color:var(--muted)">12,723 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:99%;background:#4472C4"></div></div>24.8</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:70%;background:#70AD47"></div></div>14</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">77.5</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJBYCkBQCZ4jARMk27YRVj-vM" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Siam" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">5</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">โค-ร-ต KORATA (Siam Square)</div><div style="font-size:11px;color:var(--muted)">Siam Square Soi 3, Pathum Wan, Bangkok 10330, Thailand</div></td>
+  <td><span class="area-badge" style="background:#e74c3c">Siam</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Thai restaurant, Restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.9</div><div style="font-size:10px;color:var(--muted)">2,527 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:92%;background:#4472C4"></div></div>23.1</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:70%;background:#70AD47"></div></div>14</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">75.8</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJ0xYxXwCf4jARPtJNOp_WXm8" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Siam" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">6</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">White Flower Factory - ครัวดอกไม้ขาว</div><div style="font-size:11px;color:var(--muted)">Unit #SS 4009, 388 Rama I Rd, Pathum Wan, Bangkok 10330, Tha</div></td>
+  <td><span class="area-badge" style="background:#e74c3c">Siam</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Thai restaurant, Bakery, Dessert sh</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.6</div><div style="font-size:10px;color:var(--muted)">1,520 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:90%;background:#4472C4"></div></div>22.6</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:70%;background:#70AD47"></div></div>14</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">75.3</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJ937RdtKe4jARPRuzBAQLNxc" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Siam" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">7</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">SUSHI SEKI (Siam Paragon)</div><div style="font-size:11px;color:var(--muted)">5th Floor, Siam Paragon, Rama I Rd, Pathum Wan, Bangkok 1033</div></td>
+  <td><span class="area-badge" style="background:#e74c3c">Siam</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Japanese restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.8</div><div style="font-size:10px;color:var(--muted)">2,269 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:92%;background:#4472C4"></div></div>23.0</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:70%;background:#70AD47"></div></div>14</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">73.7</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJtUJPwlif4jARmCxyjz2C4nM" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Siam" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">8</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Pasta Ama Siam Center</div><div style="font-size:11px;color:var(--muted)">สยามเซ็นเตอร์ ชั้น 2, 979 Rama I Rd, ปทุมวัน, Pathum Wan, Ba</div></td>
+  <td><span class="area-badge" style="background:#e74c3c">Siam</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.9</div><div style="font-size:10px;color:var(--muted)">4,763 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:95%;background:#4472C4"></div></div>23.8</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:55%;background:#70AD47"></div></div>11</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">73.5</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJwSrCL8uf4jARQB4sChigQRE" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Siam" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">9</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">The Karaked</div><div style="font-size:11px;color:var(--muted)">Siam Square One 388, Room SS4003 ชั้น 4, Pathum Wan, Bangkok</div></td>
+  <td><span class="area-badge" style="background:#e74c3c">Siam</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Thai restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.7</div><div style="font-size:10px;color:var(--muted)">666 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:87%;background:#4472C4"></div></div>21.8</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:70%;background:#70AD47"></div></div>14</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">73.5</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJ6ZONJoKf4jARHz_6pCfhv5A" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Siam" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">10</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">SIAM ORIGINS</div><div style="font-size:11px;color:var(--muted)">Museum Siam, 4 Sanam Chai Rd, Phra Borom Maha Ratchawang, Ph</div></td>
+  <td><span class="area-badge" style="background:#e74c3c">Siam</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Thai restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.7</div><div style="font-size:10px;color:var(--muted)">570 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:86%;background:#4472C4"></div></div>21.6</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:70%;background:#70AD47"></div></div>14</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">73.3</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJO8TqvWyZ4jARJ3_ZAlMWJbY" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Ari" style="display:none">
+  <td><div class="rank-num" style="background:#f5a623;color:#000">1</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Lay Lao</div><div style="font-size:11px;color:var(--muted)">65 Phahon Yothin 7, Samsen Nai, Phaya Thai, Bangkok 10400, T</div></td>
+  <td><span class="area-badge" style="background:#27ae60">Ari</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Thai restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.5</div><div style="font-size:10px;color:var(--muted)">2,450 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:92%;background:#4472C4"></div></div>23.1</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">86.8</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJ44AEpx2c4jARZKaM12f1HQI" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Ari" style="display:none">
+  <td><div class="rank-num" style="background:#b0b0b0;color:#000">2</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Kopihub Prime l Ari</div><div style="font-size:11px;color:var(--muted)">33 Soi Ari 2, Phaya Thai, Bangkok 10400, Thailand</div></td>
+  <td><span class="area-badge" style="background:#27ae60">Ari</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Dim sum restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.8</div><div style="font-size:10px;color:var(--muted)">3,429 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:94%;background:#4472C4"></div></div>23.5</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">86.2</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJgdqs_tuf4jARl5VCETZn0do" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Ari" style="display:none">
+  <td><div class="rank-num" style="background:#cd7f32;color:#fff">3</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Seiniku-Ten @ Ari</div><div style="font-size:11px;color:var(--muted)">40 Chua Chit Alley, Phaya Thai, Bangkok 10400, Thailand</div></td>
+  <td><span class="area-badge" style="background:#27ae60">Ari</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Yakiniku restaurant, Buffet restaur</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.5</div><div style="font-size:10px;color:var(--muted)">1,511 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:90%;background:#4472C4"></div></div>22.6</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">83.3</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJ95SfUxyc4jARx8SwhPXpSBQ" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Ari" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">4</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Baan Pueng Chom</div><div style="font-size:11px;color:var(--muted)">38 Phahon Yothin 7, แขวง พญาไท Phaya Thai, Bangkok 10400, Th</div></td>
+  <td><span class="area-badge" style="background:#27ae60">Ari</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Thai restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.2</div><div style="font-size:10px;color:var(--muted)">1,620 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:79%;background:#4472C4"></div></div>19.7</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">81.4</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJDeDuUByc4jARIqwSs_XcM2M" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Ari" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">5</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">IzakayaReiwa</div><div style="font-size:11px;color:var(--muted)">117/2 Phahon Yothin 7, Phaya Thai, Bangkok 10400, Thailand</div></td>
+  <td><span class="area-badge" style="background:#27ae60">Ari</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Izakaya restaurant, Japanese restau</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.6</div><div style="font-size:10px;color:var(--muted)">588 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:86%;background:#4472C4"></div></div>21.6</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">81.3</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJ7XCbhCGd4jARFpyNOibOsLA" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Ari" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">6</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Sousaku Ari</div><div style="font-size:11px;color:var(--muted)">39 1 ซอย พหลโยธิน 7 Phaya Thai, Bangkok 10400, Thailand</div></td>
+  <td><span class="area-badge" style="background:#27ae60">Ari</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Japanese restaurant, Restaurant, Su</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.6</div><div style="font-size:10px;color:var(--muted)">1,119 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:89%;background:#4472C4"></div></div>22.3</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:53%;background:#ED7D31"></div></div>8</div>
+  </div></td>
+  <td><div class="total-score-big">78.0</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJs3BZdR2c4jARB8V8iANTx7o" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Ari" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">7</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Paknang.bkk</div><div style="font-size:11px;color:var(--muted)">2/23, 5 Phahon Yothin 7, Phaya Thai, Bangkok 10400, Thailand</div></td>
+  <td><span class="area-badge" style="background:#27ae60">Ari</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Restaurant, Thai restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.8</div><div style="font-size:10px;color:var(--muted)">1,340 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:90%;background:#4472C4"></div></div>22.5</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:70%;background:#70AD47"></div></div>14</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">75.2</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJ10EjPQud4jARYSO1lfdgtAo" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Ari" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">8</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">ซอยข่อยแน Soikoinae ส้มตำ อารีย์-สะพานควาย</div><div style="font-size:11px;color:var(--muted)">436/8 Phahon Yothin 12 Alley, Samsen Nai, Phaya Thai, Bangko</div></td>
+  <td><span class="area-badge" style="background:#27ae60">Ari</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Thai restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.8</div><div style="font-size:10px;color:var(--muted)">1,935 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:92%;background:#4472C4"></div></div>22.9</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:70%;background:#70AD47"></div></div>14</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">74.6</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJCUASixKd4jARVlbwIyGIplU" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Ari" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">9</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Lucky’s Hungry สาขา HAUS อารีย์</div><div style="font-size:11px;color:var(--muted)">9 1 Soi Ari 3, Phaya Thai, Khet Phaya Thai, Bangkok 10400, T</div></td>
+  <td><span class="area-badge" style="background:#27ae60">Ari</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Fusion restaurant, American restaur</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.7</div><div style="font-size:10px;color:var(--muted)">1,522 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:90%;background:#4472C4"></div></div>22.6</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:70%;background:#70AD47"></div></div>14</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">74.3</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJc6nvAmGd4jAREp6SCD85N_Q" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Ari" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">10</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Karimaki</div><div style="font-size:11px;color:var(--muted)">โครงการสนั่นนภา Soi Ari 1, Phaya Thai, Bangkok 10400, Thaila</div></td>
+  <td><span class="area-badge" style="background:#27ae60">Ari</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.8</div><div style="font-size:10px;color:var(--muted)">600 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:87%;background:#4472C4"></div></div>21.7</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:70%;background:#70AD47"></div></div>14</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">73.4</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJOx5TRued4jARza9cfifO9WI" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Thonglor" style="display:none">
+  <td><div class="rank-num" style="background:#f5a623;color:#000">1</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Lucca Thonglor – Mediterranean Restaurant, Rooftop</div><div style="font-size:11px;color:var(--muted)">Thonglor, 125/26 Thong Lo, Khlong Tan Nuea, Watthana, Bangko</div></td>
+  <td><span class="area-badge" style="background:#8e44ad">Thonglor</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Restaurant, Brunch restaurant, Medi</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.9</div><div style="font-size:10px;color:var(--muted)">817 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:88%;background:#4472C4"></div></div>22.0</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">83.7</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJbx8TnXKf4jARvOgGrfi8gCQ" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Thonglor" style="display:none">
+  <td><div class="rank-num" style="background:#b0b0b0;color:#000">2</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">SHAKARICH</div><div style="font-size:11px;color:var(--muted)">6-7, No.416, Thong Lo, Klongton Nua, Watthana, Bangkok 10110</div></td>
+  <td><span class="area-badge" style="background:#8e44ad">Thonglor</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Japanese restaurant, Crab house, Ec</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.7</div><div style="font-size:10px;color:var(--muted)">532 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:86%;background:#4472C4"></div></div>21.5</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">82.2</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJWY30I1Oe4jARlP_8fcdYYhw" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Thonglor" style="display:none">
+  <td><div class="rank-num" style="background:#cd7f32;color:#fff">3</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Thong Lo Yokocho</div><div style="font-size:11px;color:var(--muted)">138, 1 ถนน สุขุมวิท Khwaeng Khlong Tan Nuea, Watthana, Bangk</div></td>
+  <td><span class="area-badge" style="background:#8e44ad">Thonglor</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Izakaya restaurant, Japanese curry </td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.6</div><div style="font-size:10px;color:var(--muted)">709 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:87%;background:#4472C4"></div></div>21.8</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">80.5</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJCxd7WFKe4jARBpavYzUGhlo" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Thonglor" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">4</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Di Vino Bangkok | Italian Restaurant Thonglor</div><div style="font-size:11px;color:var(--muted)">Penny’s Balcony, Thong Lo, Khlong Tan Nuea, Watthana, Bangko</div></td>
+  <td><span class="area-badge" style="background:#8e44ad">Thonglor</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Italian restaurant, Restaurant, Win</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.7</div><div style="font-size:10px;color:var(--muted)">383 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:85%;background:#4472C4"></div></div>21.2</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:53%;background:#ED7D31"></div></div>8</div>
+  </div></td>
+  <td><div class="total-score-big">76.9</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJi7QNHVOe4jARgyB05vA6Gk4" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Thonglor" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">5</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Krua Jiang Mai</div><div style="font-size:11px;color:var(--muted)">125 24 Thong Lo, Khlong Tan Nuea, Watthana, Bangkok 10110, T</div></td>
+  <td><span class="area-badge" style="background:#8e44ad">Thonglor</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Thai restaurant, Restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.8</div><div style="font-size:10px;color:var(--muted)">2,733 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:93%;background:#4472C4"></div></div>23.2</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:70%;background:#70AD47"></div></div>14</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">75.2</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJh7s6GVOe4jAReTmapQOwBQ0" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Thonglor" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">6</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Miyabi Kappo</div><div style="font-size:11px;color:var(--muted)">9 11 Thong Lo 25 Alley, Khlong Tan Nuea, Watthana, Bangkok 1</div></td>
+  <td><span class="area-badge" style="background:#8e44ad">Thonglor</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Authentic Japanese restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.6</div><div style="font-size:10px;color:var(--muted)">362 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:84%;background:#4472C4"></div></div>21.1</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:27%;background:#ED7D31"></div></div>4</div>
+  </div></td>
+  <td><div class="total-score-big">72.8</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJiz28e1Ge4jARumeDbA7seoA" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Thonglor" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">7</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">ELITE Restaurant</div><div style="font-size:11px;color:var(--muted)">16 Thong Lo 13 Alley, Khlong Tan Nuea, Watthana, Bangkok 101</div></td>
+  <td><span class="area-badge" style="background:#8e44ad">Thonglor</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.7</div><div style="font-size:10px;color:var(--muted)">246 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:83%;background:#4472C4"></div></div>20.7</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:27%;background:#ED7D31"></div></div>4</div>
+  </div></td>
+  <td><div class="total-score-big">72.4</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJBUr6N_Of4jARopEFY5Fpj7s" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Thonglor" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">8</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">NICO NICO - Café & Brunch Place</div><div style="font-size:11px;color:var(--muted)">555, ตึก DM Home Thong Lo, แขวง คลองเตยเหนือ Watthana, Bangk</div></td>
+  <td><span class="area-badge" style="background:#8e44ad">Thonglor</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Brunch restaurant, Bakery, Cafe</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.5</div><div style="font-size:10px;color:var(--muted)">424 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:85%;background:#4472C4"></div></div>21.3</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:70%;background:#70AD47"></div></div>14</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">72.0</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJK0oh-fqf4jAR-70cq-12UNY" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Thonglor" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">9</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">The Bar Italian Thonglor</div><div style="font-size:11px;color:var(--muted)">36/1 1Fl, Soi Promphak, Khlong Tan Nuea, Watthana, Bangkok 1</div></td>
+  <td><span class="area-badge" style="background:#8e44ad">Thonglor</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Italian restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.7</div><div style="font-size:10px;color:var(--muted)">496 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:86%;background:#4472C4"></div></div>21.5</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:70%;background:#70AD47"></div></div>14</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">71.2</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJL2QZHFSe4jARiJ3bfNaDY4Q" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Thonglor" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">10</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Khao Jao</div><div style="font-size:11px;color:var(--muted)">PHPJ+4MP, Khlong Tan Nuea, Watthana, Bangkok 10110, Thailand</div></td>
+  <td><span class="area-badge" style="background:#8e44ad">Thonglor</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Thai restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.2</div><div style="font-size:10px;color:var(--muted)">648 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:75%;background:#4472C4"></div></div>18.7</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:70%;background:#70AD47"></div></div>14</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">70.4</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJ-w3sn1Oe4jAR79t8CO-3o_Y" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Asok" style="display:none">
+  <td><div class="rank-num" style="background:#f5a623;color:#000">1</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Ping's Shark Fin Restaurant Asoke (The Original)</div><div style="font-size:11px;color:var(--muted)">137/3 Sukhumvit 21 Rd, North Klongtoey Watthana, Bangkok 101</div></td>
+  <td><span class="area-badge" style="background:#2980b9">Asok</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Chinese restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.6</div><div style="font-size:10px;color:var(--muted)">1,584 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:91%;background:#4472C4"></div></div>22.7</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">83.4</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJnfQQnAGf4jARkEY6N_nZR74" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Asok" style="display:none">
+  <td><div class="rank-num" style="background:#b0b0b0;color:#000">2</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Rossano's Italian Cuisine</div><div style="font-size:11px;color:var(--muted)">167 Sukhumvit Soi 21, Asok Montri Rd, Khlong Toei Nuea, Watt</div></td>
+  <td><span class="area-badge" style="background:#2980b9">Asok</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Italian restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.5</div><div style="font-size:10px;color:var(--muted)">1,137 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:89%;background:#4472C4"></div></div>22.3</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">83.0</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJge5RZOOe4jARzWYZ3jGvKbA" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Asok" style="display:none">
+  <td><div class="rank-num" style="background:#cd7f32;color:#fff">3</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">The Deck Bangkok (thedeckbkk)</div><div style="font-size:11px;color:var(--muted)">15 Sukhumvit 20 Alley, Khlong Toei, Bangkok 10110, Thailand</div></td>
+  <td><span class="area-badge" style="background:#2980b9">Asok</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Restaurant, Bar, Brunch restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.7</div><div style="font-size:10px;color:var(--muted)">1,661 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:91%;background:#4472C4"></div></div>22.7</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">82.4</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJwckPWrif4jARrU3ysHbv5v8" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Asok" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">4</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Yurijin Izakaya & Japanese Dining</div><div style="font-size:11px;color:var(--muted)">Ratchadaphisek Rd, ดินแดง Din Daeng, Bangkok 10400, Thailand</div></td>
+  <td><span class="area-badge" style="background:#2980b9">Asok</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Japanese restaurant, Izakaya restau</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.7</div><div style="font-size:10px;color:var(--muted)">301 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:84%;background:#4472C4"></div></div>20.9</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">78.6</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJ65-DIEWf4jARQGBAS4vFor8" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Asok" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">5</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">The Local</div><div style="font-size:11px;color:var(--muted)">32 32/1 Soi Sukhumvit 23, Khlong Toei Nuea, Watthana, Bangko</div></td>
+  <td><span class="area-badge" style="background:#2980b9">Asok</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Thai restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.4</div><div style="font-size:10px;color:var(--muted)">3,278 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:82%;background:#4472C4"></div></div>20.4</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:53%;background:#ED7D31"></div></div>8</div>
+  </div></td>
+  <td><div class="total-score-big">77.1</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJc881Nfue4jARsIcIs9ZqPJE" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Asok" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">6</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Sunrise Tacos MEXICAN GRILL</div><div style="font-size:11px;color:var(--muted)">88 Soi Sukhumvit 19, Khlong Toei Nuea, Thawi Watthana, Bangk</div></td>
+  <td><span class="area-badge" style="background:#2980b9">Asok</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Mexican restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.7</div><div style="font-size:10px;color:var(--muted)">4,997 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:96%;background:#4472C4"></div></div>23.9</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:70%;background:#70AD47"></div></div>14</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">76.6</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJxaq1oeOe4jAROvyHinpPC-Q" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Asok" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">7</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Bangkok Heightz Rooftop (Restaurant & Bar 39th flo</div><div style="font-size:11px;color:var(--muted)">413 ชั้น 39, โรงแรม เดอะ คอนทิเนนท์, Sukhumvit Rd, Khlong To</div></td>
+  <td><span class="area-badge" style="background:#2980b9">Asok</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Restaurant, Bar, Thai restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.8</div><div style="font-size:10px;color:var(--muted)">2,891 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:93%;background:#4472C4"></div></div>23.3</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:70%;background:#70AD47"></div></div>14</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">75.0</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJ_QYAIOOe4jARxBtLupRX4u4" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Asok" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">8</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Gigi Eatery Asoke</div><div style="font-size:11px;color:var(--muted)">28 Soi Sukhumvit 19, Khlong Tan Nuea, Watthana, Bangkok 1011</div></td>
+  <td><span class="area-badge" style="background:#2980b9">Asok</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Italian restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.8</div><div style="font-size:10px;color:var(--muted)">3,325 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:94%;background:#4472C4"></div></div>23.4</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:70%;background:#70AD47"></div></div>14</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">74.1</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJw5WEJoqf4jARFC4PiDtFCzc" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Asok" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">9</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Eat Am Are 253 Asok Building</div><div style="font-size:11px;color:var(--muted)">253 ชั้น G, Asok Alley, Khlong Toei Nuea, Watthana, Bangkok </div></td>
+  <td><span class="area-badge" style="background:#2980b9">Asok</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Steak house</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.5</div><div style="font-size:10px;color:var(--muted)">1,441 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:90%;background:#4472C4"></div></div>22.6</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:70%;background:#70AD47"></div></div>14</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">73.6</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJtz6LEiOf4jARORWzcrLDLBc" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Asok" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">10</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">สมยงตำซั่ว สุขุมวิท-อโศก</div><div style="font-size:11px;color:var(--muted)">44/4 Sukhumvit 21 Rd, Khlong Toei Nuea, Watthana, Bangkok 10</div></td>
+  <td><span class="area-badge" style="background:#2980b9">Asok</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Thai restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.7</div><div style="font-size:10px;color:var(--muted)">747 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:88%;background:#4472C4"></div></div>21.9</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:70%;background:#70AD47"></div></div>14</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">73.6</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJtyENWqaf4jARAqfMnRP3xQY" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Phrom Phong" style="display:none">
+  <td><div class="rank-num" style="background:#f5a623;color:#000">1</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">LA PLANTE</div><div style="font-size:11px;color:var(--muted)">AVORA31, 28 Sukhumvit 31, Khlong Tan Nuea, Watthana, Bangkok</div></td>
+  <td><span class="area-badge" style="background:#e67e22">Phrom Phong</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">French restaurant, Bistro, Breakfas</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.6</div><div style="font-size:10px;color:var(--muted)">258 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:83%;background:#4472C4"></div></div>20.8</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">82.5</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJkQb2tXOf4jARhJdrACdo7c8" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Phrom Phong" style="display:none">
+  <td><div class="rank-num" style="background:#b0b0b0;color:#000">2</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">TEN-SHOW Live Kitchen / Japanese Cuisine Restauran</div><div style="font-size:11px;color:var(--muted)">12Soi Sukhumvit 24, Sukhumvit Rd.,, Khlong Toei 12 Sukhumvit</div></td>
+  <td><span class="area-badge" style="background:#e67e22">Phrom Phong</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Japanese restaurant, Kaiseki restau</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.8</div><div style="font-size:10px;color:var(--muted)">199 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:82%;background:#4472C4"></div></div>20.5</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">80.2</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJLRVFjHWf4jARYiH1cIDj64o" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Phrom Phong" style="display:none">
+  <td><div class="rank-num" style="background:#cd7f32;color:#fff">3</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Origami Restaurant Sukhumvit 24 Borderless Cuisine</div><div style="font-size:11px;color:var(--muted)">L Floor, Staybridge Suites Bangkok Sukhumvit, 89/8 89/9 Sukh</div></td>
+  <td><span class="area-badge" style="background:#e67e22">Phrom Phong</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Restaurant, Breakfast restaurant, F</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.8</div><div style="font-size:10px;color:var(--muted)">246 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:83%;background:#4472C4"></div></div>20.7</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">79.4</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJu5j2gCOf4jARCFnsDMLgh0g" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Phrom Phong" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">4</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">HONE Izakaya Sukhumvit 24</div><div style="font-size:11px;color:var(--muted)">room B2, Floor 1, 88/9, Soi Sukhumvit 24, BLVD Building, Khl</div></td>
+  <td><span class="area-badge" style="background:#e67e22">Phrom Phong</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Restaurant, Modern izakaya restaura</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)"></div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">5.0</div><div style="font-size:10px;color:var(--muted)">205 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:82%;background:#4472C4"></div></div>20.5</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">77.5</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJqxfg68af4jARY16WyapdzjY" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Phrom Phong" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">5</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Imoya</div><div style="font-size:11px;color:var(--muted)">2/17-19 Sukhumvit 24 Alley, Khlong Tan, Khlong Toei, Bangkok</div></td>
+  <td><span class="area-badge" style="background:#e67e22">Phrom Phong</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Izakaya restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.4</div><div style="font-size:10px;color:var(--muted)">503 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:74%;background:#4472C4"></div></div>18.5</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>20</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">74.5</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJaeqJggGf4jARnt6aEriP2vE" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Phrom Phong" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">6</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Sri Trat Restaurant and Bar</div><div style="font-size:11px;color:var(--muted)">90 Sukhumvit 33 Alley, Khlong Tan Nuea, Watthana, Bangkok 10</div></td>
+  <td><span class="area-badge" style="background:#e67e22">Phrom Phong</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Thai restaurant, Bar</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.5</div><div style="font-size:10px;color:var(--muted)">2,540 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:93%;background:#4472C4"></div></div>23.2</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:70%;background:#70AD47"></div></div>14</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">73.9</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJoc-7O_ye4jARa2GblY_w4Bo" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Phrom Phong" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">7</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Nimitr</div><div style="font-size:11px;color:var(--muted)">59/1 Sukhumvit 39, Khlong Tan Nuea, Watthana, Bangkok 10110,</div></td>
+  <td><span class="area-badge" style="background:#e67e22">Phrom Phong</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Asian restaurant, Restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.9</div><div style="font-size:10px;color:var(--muted)">567 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:86%;background:#4472C4"></div></div>21.6</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:70%;background:#70AD47"></div></div>14</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">72.3</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJzXuDJP-e4jARZghe1xJufWU" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Phrom Phong" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">8</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Kenny's BKK - Sukhumvit 31</div><div style="font-size:11px;color:var(--muted)">24/1 Sukhumvit 31, Khlong Tan Nuea, Watthana, Bangkok 10110,</div></td>
+  <td><span class="area-badge" style="background:#e67e22">Phrom Phong</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Pizza restaurant</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.8</div><div style="font-size:10px;color:var(--muted)">1,105 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:89%;background:#4472C4"></div></div>22.3</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:70%;background:#70AD47"></div></div>14</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">72.0</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJd_RzZQCf4jARUbKJzoih9sY" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Phrom Phong" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">9</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">Kobe Tonteki Phrom Phong</div><div style="font-size:11px;color:var(--muted)">595, 3-4 Soi Sukhumvit 33/1, Khlong Tan Nuea, Watthana, Bang</div></td>
+  <td><span class="area-badge" style="background:#e67e22">Phrom Phong</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Japanized western restaurant, Japan</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.6</div><div style="font-size:10px;color:var(--muted)">1,920 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:92%;background:#4472C4"></div></div>22.9</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:55%;background:#70AD47"></div></div>11</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>15</div>
+  </div></td>
+  <td><div class="total-score-big">71.6</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJ71MxUnKf4jAR_nrxq8_tPIM" target="_blank">📍 Maps</a></td>
+</tr>
+<tr data-area="Phrom Phong" style="display:none">
+  <td><div class="rank-num" style="background:#333;color:#888">10</div></td>
+  <td style="max-width:220px"><div style="font-weight:700;color:#fff;line-height:1.3">CALM Bangkok - Grill, Garden & Guinguette</div><div style="font-size:11px;color:var(--muted)">231/2 , Soi Sukhumvit 31 (Soi Sawasdee), Sukhumvit Road Khlo</div></td>
+  <td><span class="area-badge" style="background:#e67e22">Phrom Phong</span></td>
+  <td style="color:var(--muted);font-size:11px;max-width:120px">Restaurant, Bar, Bar & grill</td>
+  <td><div style="font-size:12px;color:#fff">N/A</div><div style="font-size:10px;color:var(--muted)">$$</div></td>
+  <td><div style="color:var(--gold);font-size:14px;font-weight:700">4.8</div><div style="font-size:10px;color:var(--muted)">755 reviews</div></td>
+  <td><div class="mini-bars">
+    <div class="mini-bar-row">A<div class="mini-bar"><div class="mini-fill" style="width:88%;background:#4472C4"></div></div>21.9</div>
+    <div class="mini-bar-row">B<div class="mini-bar"><div class="mini-fill" style="width:70%;background:#70AD47"></div></div>14</div>
+    <div class="mini-bar-row">C<div class="mini-bar"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>12</div>
+  </div></td>
+  <td><div class="total-score-big">71.6</div><div style="font-size:10px;color:var(--muted)">/100</div></td>
+  <td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJq1XCBzuf4jARKB3mkY-Huh8" target="_blank">📍 Maps</a></td>
+</tr>
+</tbody></table></div></div>
+<div class="divider"></div>
+<div class="section">
+  <div class="section-header"><div class="section-icon" style="background:#2a2a0e">🔍</div><div><div class="section-title">Restaurant Comparison</div><div class="section-subtitle">เปรียบเทียบจุดเด่น / ข้อควรระวัง — Top 5 ร้านคะแนนสูงสุด</div></div></div>
+  <div style="overflow-x:auto"><table class="compare-table"><thead><tr><th>เกณฑ์</th>
+<th style="min-width:180px"><div style="font-size:13px">Lay Lao</div><div style="font-size:10px;opacity:.6">Ari</div></th>
+<th style="min-width:180px"><div style="font-size:13px">Kopihub Prime l Ari</div><div style="font-size:10px;opacity:.6">Ari</div></th>
+<th style="min-width:180px"><div style="font-size:13px">Jim Thompson, A Thai Restaur</div><div style="font-size:10px;opacity:.6">Siam</div></th>
+<th style="min-width:180px"><div style="font-size:13px">Jasmine Siam Kitchen จัสมิน </div><div style="font-size:10px;opacity:.6">Siam</div></th>
+<th style="min-width:180px"><div style="font-size:13px">Lucca Thonglor – Mediterrane</div><div style="font-size:10px;opacity:.6">Thonglor</div></th>
+</tr></thead><tbody>
+<tr><td>🏆 AI Score รวม</td>
+<td><span style="font-size:18px;font-weight:800;color:var(--gold)">86.8</span></td>
+<td><span style="font-size:18px;font-weight:800;color:var(--gold)">86.2</span></td>
+<td><span style="font-size:18px;font-weight:800;color:var(--gold)">85.2</span></td>
+<td><span style="font-size:18px;font-weight:800;color:var(--gold)">84.0</span></td>
+<td><span style="font-size:18px;font-weight:800;color:var(--gold)">83.7</span></td>
+</tr>
+<tr><td>⭐ คะแนน Google</td>
+<td><span style="color:var(--gold)">⭐ 4.5</span></td>
+<td><span style="color:var(--gold)">⭐ 4.8</span></td>
+<td><span style="color:var(--gold)">⭐ 4.8</span></td>
+<td><span style="color:var(--gold)">⭐ 4.7</span></td>
+<td><span style="color:var(--gold)">⭐ 4.9</span></td>
+</tr>
+<tr><td>💬 จำนวนรีวิว</td>
+<td>2,450</td>
+<td>3,429</td>
+<td>3,609</td>
+<td>1,150</td>
+<td>817</td>
+</tr>
+<tr><td>💰 ราคา/คน</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr><td>💲 Price Level</td>
+<td>$$</td>
+<td>$</td>
+<td>$$$</td>
+<td>$</td>
+<td>$</td>
+</tr>
+<tr><td>👥 รับกลุ่ม 8-12</td>
+<td><span class="check-yes">✅ Yes</span></td>
+<td><span class="check-yes">✅ Yes</span></td>
+<td><span class="check-yes">✅ Yes</span></td>
+<td><span class="check-yes">✅ Yes</span></td>
+<td><span class="check-yes">✅ Yes</span></td>
+</tr>
+<tr><td>📅 รับจอง</td>
+<td><span class="check-yes">🔒 Required</span></td>
+<td><span class="check-yes">✅ Yes</span></td>
+<td><span class="check-yes">✅ Yes</span></td>
+<td><span class="check-yes">✅ Yes</span></td>
+<td><span class="check-yes">✅ Yes</span></td>
+</tr>
+<tr><td>🔒 Private Room</td>
+<td><span class="check-yes">✅ Yes</span></td>
+<td><span class="check-yes">✅ Yes</span></td>
+<td><span class="check-yes">✅ Yes</span></td>
+<td><span class="check-yes">✅ Yes</span></td>
+<td><span class="check-yes">✅ Yes</span></td>
+</tr>
+<tr><td>🌟 Rating Score [A]</td>
+<td><div class="mini-bars"><div class="mini-bar-row"><div class="mini-bar" style="max-width:80px"><div class="mini-fill" style="width:92%;background:#4472C4"></div></div>&nbsp;23.1/25</div></div></td>
+<td><div class="mini-bars"><div class="mini-bar-row"><div class="mini-bar" style="max-width:80px"><div class="mini-fill" style="width:94%;background:#4472C4"></div></div>&nbsp;23.5/25</div></div></td>
+<td><div class="mini-bars"><div class="mini-bar-row"><div class="mini-bar" style="max-width:80px"><div class="mini-fill" style="width:94%;background:#4472C4"></div></div>&nbsp;23.5/25</div></div></td>
+<td><div class="mini-bars"><div class="mini-bar-row"><div class="mini-bar" style="max-width:80px"><div class="mini-fill" style="width:89%;background:#4472C4"></div></div>&nbsp;22.3/25</div></div></td>
+<td><div class="mini-bars"><div class="mini-bar-row"><div class="mini-bar" style="max-width:80px"><div class="mini-fill" style="width:88%;background:#4472C4"></div></div>&nbsp;22.0/25</div></div></td>
+</tr>
+<tr><td>👥 Group Score [B]</td>
+<td><div class="mini-bars"><div class="mini-bar-row"><div class="mini-bar" style="max-width:80px"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>&nbsp;20/20</div></div></td>
+<td><div class="mini-bars"><div class="mini-bar-row"><div class="mini-bar" style="max-width:80px"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>&nbsp;20/20</div></div></td>
+<td><div class="mini-bars"><div class="mini-bar-row"><div class="mini-bar" style="max-width:80px"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>&nbsp;20/20</div></div></td>
+<td><div class="mini-bars"><div class="mini-bar-row"><div class="mini-bar" style="max-width:80px"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>&nbsp;20/20</div></div></td>
+<td><div class="mini-bars"><div class="mini-bar-row"><div class="mini-bar" style="max-width:80px"><div class="mini-fill" style="width:100%;background:#70AD47"></div></div>&nbsp;20/20</div></div></td>
+</tr>
+<tr><td>💰 Price Score [C]</td>
+<td><div class="mini-bars"><div class="mini-bar-row"><div class="mini-bar" style="max-width:80px"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>&nbsp;15/15</div></div></td>
+<td><div class="mini-bars"><div class="mini-bar-row"><div class="mini-bar" style="max-width:80px"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>&nbsp;15/15</div></div></td>
+<td><div class="mini-bars"><div class="mini-bar-row"><div class="mini-bar" style="max-width:80px"><div class="mini-fill" style="width:80%;background:#ED7D31"></div></div>&nbsp;12/15</div></div></td>
+<td><div class="mini-bars"><div class="mini-bar-row"><div class="mini-bar" style="max-width:80px"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>&nbsp;15/15</div></div></td>
+<td><div class="mini-bars"><div class="mini-bar-row"><div class="mini-bar" style="max-width:80px"><div class="mini-fill" style="width:100%;background:#ED7D31"></div></div>&nbsp;15/15</div></div></td>
+</tr>
+<tr><td>🚇 Travel Score [D]</td>
+<td><div class="mini-bars"><div class="mini-bar-row"><div class="mini-bar" style="max-width:80px"><div class="mini-fill" style="width:100%;background:#FFC000"></div></div>&nbsp;15/15</div></div></td>
+<td><div class="mini-bars"><div class="mini-bar-row"><div class="mini-bar" style="max-width:80px"><div class="mini-fill" style="width:100%;background:#FFC000"></div></div>&nbsp;15/15</div></div></td>
+<td><div class="mini-bars"><div class="mini-bar-row"><div class="mini-bar" style="max-width:80px"><div class="mini-fill" style="width:100%;background:#FFC000"></div></div>&nbsp;15/15</div></div></td>
+<td><div class="mini-bars"><div class="mini-bar-row"><div class="mini-bar" style="max-width:80px"><div class="mini-fill" style="width:100%;background:#FFC000"></div></div>&nbsp;15/15</div></div></td>
+<td><div class="mini-bars"><div class="mini-bar-row"><div class="mini-bar" style="max-width:80px"><div class="mini-fill" style="width:100%;background:#FFC000"></div></div>&nbsp;15/15</div></div></td>
+</tr>
+<tr><td>✨ Unique Score [F]</td>
+<td><div class="mini-bars"><div class="mini-bar-row"><div class="mini-bar" style="max-width:80px"><div class="mini-fill" style="width:80%;background:#cd853f"></div></div>&nbsp;8/10</div></div></td>
+<td><div class="mini-bars"><div class="mini-bar-row"><div class="mini-bar" style="max-width:80px"><div class="mini-fill" style="width:70%;background:#cd853f"></div></div>&nbsp;7/10</div></div></td>
+<td><div class="mini-bars"><div class="mini-bar-row"><div class="mini-bar" style="max-width:80px"><div class="mini-fill" style="width:90%;background:#cd853f"></div></div>&nbsp;9/10</div></div></td>
+<td><div class="mini-bars"><div class="mini-bar-row"><div class="mini-bar" style="max-width:80px"><div class="mini-fill" style="width:60%;background:#cd853f"></div></div>&nbsp;6/10</div></div></td>
+<td><div class="mini-bars"><div class="mini-bar-row"><div class="mini-bar" style="max-width:80px"><div class="mini-fill" style="width:60%;background:#cd853f"></div></div>&nbsp;6/10</div></div></td>
+</tr>
+<tr><td>🚇 BTS/MRT</td>
+<td>BTS Ari (ประมาณ 200-800 ม</td>
+<td>BTS Ari (ประมาณ 200-800 ม</td>
+<td>BTS Siam</td>
+<td>BTS Siam</td>
+<td>BTS Thong Lo</td>
+</tr>
+<tr><td>📞 เบอร์โทร</td>
+<td>+66 62 453 5588</td>
+<td>+66 80 992 4922</td>
+<td>+66 61 421 8951</td>
+<td>+66 94 874 8773</td>
+<td>+66 65 594 9454</td>
+</tr>
+<tr><td>✅ จุดเด่น</td>
+<td><span class="pro">✅ ราคาเหมาะสม รับจองได้ คะแนนสูง Private Room</span></td>
+<td><span class="pro">✅ Rating สูงมาก 4.8★ รับกลุ่มได้ Private Room</span></td>
+<td><span class="pro">✅ ชื่อเสียงระดับ Landmark Private Room สง่างาม</span></td>
+<td><span class="pro">✅ คะแนน Google ดี บรรยากาศดี รับกลุ่ม</span></td>
+<td><span class="pro">✅ บรรยากาศดี เหมาะทุกกลุ่ม ทำเลสะดวก</span></td>
+</tr><tr><td>⚠️ ข้อควรระวัง</td>
+<td><span class="con">⚠️ เต็มเร็ว ควรจองล่วงหน้า 1–2 สัปดาห์</span></td>
+<td><span class="con">⚠️ จำนวนรีวิวค่อนข้างน้อย ควรตรวจสอบ</span></td>
+<td><span class="con">⚠️ ราคาสูงกว่าค่าเฉลี่ย ควรเตรียมงบ</span></td>
+<td><span class="con">⚠️ ข้อมูลบางส่วนอาจไม่ครบ ควรโทรยืนยัน</span></td>
+<td><span class="con">⚠️ อาจไม่มี Private Room ควรจองโต๊ะกลุ่ม</span></td>
+</tr><tr><td>📍 Google Maps</td>
+<td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJ44AEpx2c4jARZKaM12f1HQI" target="_blank">📍 ดูแผนที่</a></td>
+<td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJgdqs_tuf4jARl5VCETZn0do" target="_blank">📍 ดูแผนที่</a></td>
+<td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJKVqr3I6Z4jARPi6t_zvvL1A" target="_blank">📍 ดูแผนที่</a></td>
+<td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJ1RRK2NSf4jARfIAToxgsxrU" target="_blank">📍 ดูแผนที่</a></td>
+<td><a class="map-link" href="https://www.google.com/maps/place/?q=place_id:ChIJbx8TnXKf4jARvOgGrfi8gCQ" target="_blank">📍 ดูแผนที่</a></td>
+</tr></tbody></table></div></div>
+<div class="divider"></div>
+<footer>
+  <div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:8px">AI FOOD ASSISTANT — Bangkok Group Dining 2026</div>
+  <div>HOF APO &nbsp;·&nbsp; 30 พฤษภาคม 2026 &nbsp;·&nbsp; สยาม · อารีย์ · ทองหล่อ · อโศก · พร้อมพงษ์</div>
+  <div style="margin-top:8px">Data: <a href="https://apify.com/compass/crawler-google-places" target="_blank">Google Maps Scraper</a> &nbsp;·&nbsp; <a href="https://apify.com/delicious_zebu/tripadvisor-hotel-details-scraper" target="_blank">TripAdvisor Scraper</a></div>
+  <div style="margin-top:6px;font-size:11px;color:#555">Powered by Apify · openpyxl · Python · Claude AI · HTML/CSS/JS</div>
+</footer>
+<script>
+function showTab(btn,tabId){document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.getElementById('tab-'+tabId).classList.add('active');}
+function filterArea(btn,area){document.querySelectorAll('.area-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('#rankBody tr').forEach(row=>{row.style.display=(area==='all'?row.dataset.area==='all':row.dataset.area===area)?'':'none';}); }
+</script></body></html>
